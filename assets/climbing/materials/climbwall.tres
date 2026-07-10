@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dvivjblofyttn"]
+
+[ext_resource type="Texture2D" uid="uid://cf0rrigck4xpc" path="res://assets/climbing/textures/climbing_building_climbwall_color.jpg" id="1_50lvc"]
+[ext_resource type="Texture2D" uid="uid://dl54o07ew4pon" path="res://assets/climbing/textures/climbing_building_climbwall_normal.jpg" id="2_ocdeb"]
+
+[resource]
+resource_name = "climbwall"
+cull_mode = 2
+albedo_texture = ExtResource("1_50lvc")
+roughness = 0.5
+normal_enabled = true
+normal_texture = ExtResource("2_ocdeb")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqenuisgqnt00"]
 
 [ext_resource type="Script" uid="uid://tukq7jhfwfd" path="res://stages/ui_stage/game_2d.gd" id="1_ydscs"]
-[ext_resource type="Texture2D" uid="uid://xrt20000001" path="res://addons/godot-xr-tools2/icon.png" id="2_ymbyi"]
+[ext_resource type="Texture2D" uid="uid://xrt20000001" path="res://addons/godot-xr-development-kit/icon.png" id="2_ymbyi"]
 
 [node name="Game2D" type="Control" unique_id=2044165349]
 layout_mode = 3

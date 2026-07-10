@@ -43,8 +43,8 @@ jobs:
           files=$(echo "$files" | grep -v misc | xargs -I {} sh -c 'echo "\"./{}\""' | tr '\n' ' ')
           echo "CHANGED_FILES=$files" >> $GITHUB_ENV
 
-      # Lint the godot-xr-tools2 demo
-      - name: Lint Godot XR Tools 2
+      # Lint the godot-xr-development-kit demo
+      - name: Lint Godot XR Development kit
         run: |
           for file in $( cat changed.txt | grep .gd )
           do

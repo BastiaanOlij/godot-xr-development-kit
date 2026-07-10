@@ -3,9 +3,9 @@
 [ext_resource type="Shader" uid="uid://hy6wp5qwpmjk" path="res://materials_and_shaders/textured.gdshader" id="1_uc726"]
 [ext_resource type="Texture2D" uid="uid://coleqjn6t2dg4" path="res://assets/main/arcade_floor_baseColor.png" id="2_vb2dc"]
 [ext_resource type="Script" uid="uid://b68rrwdd4s7ii" path="res://components/portal/portal_probe.gd" id="3_axfp1"]
-[ext_resource type="Shader" uid="uid://xrt2oqik7ik" path="res://addons/godot-xr-tools2/shaders/shaded_no_alpha.gdshader" id="4_slxw2"]
-[ext_resource type="Script" uid="uid://xrt2pss26pe" path="res://addons/godot-xr-tools2/components/ui/xrt2_ui_2d_in_3d.gd" id="5_hc4p6"]
-[ext_resource type="Script" uid="uid://xrt26qvygkp" path="res://addons/godot-xr-tools2/components/xrt2_frame_limited_sub_viewport.gd" id="6_tm1qv"]
+[ext_resource type="Shader" uid="uid://xrt2oqik7ik" path="res://addons/godot-xr-development-kit/shaders/shaded_no_alpha.gdshader" id="4_slxw2"]
+[ext_resource type="Script" uid="uid://xrt2pss26pe" path="res://addons/godot-xr-development-kit/components/ui/gxdk_ui_2d_in_3d.gd" id="5_hc4p6"]
+[ext_resource type="Script" uid="uid://xrt26qvygkp" path="res://addons/godot-xr-development-kit/components/gxdk_frame_limited_sub_viewport.gd" id="6_tm1qv"]
 [ext_resource type="PackedScene" uid="uid://bqenuisgqnt00" path="res://stages/ui_stage/game_2d.tscn" id="7_ogk68"]
 
 [sub_resource type="Environment" id="Environment_if21b"]
@@ -100,21 +100,21 @@ transform = Transform3D(1, 0, 0, 0, 0.9764506, 0.21574093, 0, -0.21574093, 0.976
 size = Vector3(0.9, 0.8, 0.1)
 material = SubResource("ShaderMaterial_s2wix")
 
-[node name="XRT2UI2Din3D" type="Node3D" parent="GameCabinet" unique_id=671888380 node_paths=PackedStringArray("display_viewport")]
+[node name="GXDKUI2Din3D" type="Node3D" parent="GameCabinet" unique_id=671888380 node_paths=PackedStringArray("display_viewport")]
 transform = Transform3D(1, 0, 0, 0, 0.9764506, 0.21574093, 0, -0.21574093, 0.9764506, 0, 1.3574113, 0.24016392)
 script = ExtResource("5_hc4p6")
 display_size = Vector2(0.8, 0.6)
-display_viewport = NodePath("XRT2FrameLimitedSubViewport")
+display_viewport = NodePath("GXDKFrameLimitedSubViewport")
 metadata/_custom_type_script = "uid://xrt2pss26pe"
 
-[node name="XRT2FrameLimitedSubViewport" type="SubViewport" parent="GameCabinet/XRT2UI2Din3D" unique_id=1121087139]
+[node name="GXDKFrameLimitedSubViewport" type="SubViewport" parent="GameCabinet/GXDKUI2Din3D" unique_id=1121087139]
 size = Vector2i(800, 600)
 render_target_update_mode = 1
 script = ExtResource("6_tm1qv")
 target_fps = -1
 metadata/_custom_type_script = "uid://xrt26qvygkp"
 
-[node name="Game2D" parent="GameCabinet/XRT2UI2Din3D/XRT2FrameLimitedSubViewport" unique_id=2044165349 instance=ExtResource("7_ogk68")]
+[node name="Game2D" parent="GameCabinet/GXDKUI2Din3D/GXDKFrameLimitedSubViewport" unique_id=2044165349 instance=ExtResource("7_ogk68")]
 
 [node name="PortalProbe3D" type="Node3D" parent="." unique_id=1751088348]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)

@@ -3,8 +3,8 @@
 [ext_resource type="Shader" uid="uid://hy6wp5qwpmjk" path="res://materials_and_shaders/textured.gdshader" id="1_58skw"]
 [ext_resource type="Texture2D" uid="uid://ds8hppgpq3pod" path="res://assets/main/pattern.png" id="2_i24i1"]
 [ext_resource type="Script" uid="uid://bh2q7oi3dudxl" path="res://components/objects/door_handle.gd" id="2_vgedk"]
-[ext_resource type="Script" uid="uid://xrt2jog5h0j" path="res://addons/godot-xr-tools2/components/decorators/xrt2_grab_point.gd" id="3_0ux2l"]
-[ext_resource type="Script" uid="uid://xrt22k41jo6" path="res://addons/godot-xr-tools2/hands/poses/xrt2_finger_poses.gd" id="4_nqay4"]
+[ext_resource type="Script" uid="uid://xrt2jog5h0j" path="res://addons/godot-xr-development-kit/components/decorators/gxdk_grab_point.gd" id="3_0ux2l"]
+[ext_resource type="Script" uid="uid://xrt22k41jo6" path="res://addons/godot-xr-development-kit/hands/poses/gxdk_finger_poses.gd" id="4_nqay4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_58skw"]
 size = Vector3(0.1, 2.1, 0.1)

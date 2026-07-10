@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dyclknruy8aqf"]
 
 [ext_resource type="Script" uid="uid://dms3vksv6tel5" path="res://spectator.gd" id="2_8sb5x"]
-[ext_resource type="PackedScene" uid="uid://xrt23kyre42" path="res://addons/godot-xr-tools2/spectator/xrt2_spectator_camera.tscn" id="2_hkn0h"]
+[ext_resource type="PackedScene" uid="uid://xrt23kyre42" path="res://addons/godot-xr-development-kit/spectator/gxdk_spectator_camera.tscn" id="2_hkn0h"]
 [ext_resource type="PackedScene" uid="uid://cj2av4gb40wn4" path="res://main.tscn" id="2_p0jir"]
 [ext_resource type="Texture2D" uid="uid://u6nldwj0320i" path="res://assets/main/splash.png" id="3_51pj4"]
-[ext_resource type="PackedScene" uid="uid://xrt27oxtswc" path="res://addons/godot-xr-tools2/spectator/xrt2_stabilized_camera.tscn" id="5_v5hs0"]
+[ext_resource type="PackedScene" uid="uid://xrt27oxtswc" path="res://addons/godot-xr-development-kit/spectator/gxdk_stabilized_camera.tscn" id="5_v5hs0"]
 
 [node name="Spectator" type="Node2D" unique_id=65284563]
 script = ExtResource("2_8sb5x")
@@ -27,11 +27,11 @@ popup/item_0/id = 0
 popup/item_1/text = "Stablilized Camera"
 popup/item_1/id = 1
 
-[node name="Xrt2SpectatorCamera" parent="." unique_id=717676012 instance=ExtResource("2_hkn0h")]
+[node name="GXDKSpectatorCamera" parent="." unique_id=717676012 instance=ExtResource("2_hkn0h")]
 transform = Transform3D(-0.772577, 0.013742587, -0.63477176, 0.0022893846, 0.99981976, 0.018859178, 0.63491595, 0.013116851, -0.7724695, 1.7248286, 1.9712102, -2.462911)
 cull_mask = 13
 
-[node name="Xrt2StabilizedCamera" parent="." unique_id=787561721 instance=ExtResource("5_v5hs0")]
+[node name="GXDKStabilizedCamera" parent="." unique_id=787561721 instance=ExtResource("5_v5hs0")]
 cull_mask = 11
 
 [node name="HMDViewport" type="SubViewport" parent="." unique_id=642626542]

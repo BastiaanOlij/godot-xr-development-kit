@@ -1,5 +1,5 @@
 @tool
-extends XRT2StageBase
+extends GXDKStageBase
 
 ## This is our movement demo stage, for now just a place holder.
 ## The idea here is to create a bit of an obstacle course with various surfaces to move on.

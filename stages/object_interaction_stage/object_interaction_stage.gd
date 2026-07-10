@@ -1,5 +1,5 @@
 @tool
-extends XRT2StageBase
+extends GXDKStageBase
 
 ## This is our object interaction demo stage, for now just a place holder.
 ## Idea here is to create some carneval games:

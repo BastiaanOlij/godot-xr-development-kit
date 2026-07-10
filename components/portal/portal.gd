@@ -81,7 +81,7 @@ func _process(delta):
 
 	if teleport and not _is_teleporting:
 		_is_teleporting = true
-		var stage = XRT2StageBase.get_stage(self)
+		var stage = GXDKStageBase.get_stage(self)
 		if stage:
 			if portal_scene:
 				stage.load_scene(portal_scene)
