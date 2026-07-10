@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://xrt20000006"]
+
+[ext_resource type="Script" uid="uid://xrt21akkuti" path="res://addons/godot-xr-development-kit/staging/gxdk_staging.gd" id="1_ap58f"]
+[ext_resource type="Script" uid="uid://xrt2aceed6p" path="res://addons/godot-xr-development-kit/staging/gxdk_start_xr.gd" id="2_d55t1"]
+[ext_resource type="Script" uid="uid://xrt2nm5hk3x" path="res://addons/godot-xr-development-kit/effects/fade/gxdk_fade.gd" id="2_i08xv"]
+[ext_resource type="PackedScene" uid="uid://xrt20000004" path="res://addons/godot-xr-development-kit/staging/loading_screen/gxdk_loading_screen.tscn" id="3_5dvaj"]
+[ext_resource type="Environment" uid="uid://xrt20000003" path="res://addons/godot-xr-development-kit/staging/gxdk_staging_environment.tres" id="3_7oin8"]
+
+[node name="GXDKStaging" type="Node3D" unique_id=1636807877]
+script = ExtResource("1_ap58f")
+
+[node name="Fade" type="Node3D" parent="." unique_id=1803469997]
+script = ExtResource("2_i08xv")
+metadata/_custom_type_script = "uid://xrt2nm5hk3x"
+
+[node name="Player" type="Node3D" parent="." unique_id=554518405]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="Player" unique_id=1956984950]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D" unique_id=771260997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+cull_mask = 1048571
+environment = ExtResource("3_7oin8")
+
+[node name="LeftHand" type="XRController3D" parent="Player/XROrigin3D" unique_id=902788916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+pose = &"grip"
+
+[node name="RightHand" type="XRController3D" parent="Player/XROrigin3D" unique_id=737787118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+pose = &"grip"
+
+[node name="LoadingScreen" parent="." unique_id=679080289 node_paths=PackedStringArray("follow_camera") instance=ExtResource("3_5dvaj")]
+follow_camera = NodePath("../Player/XROrigin3D/XRCamera3D")
+
+[node name="Scene" type="Node3D" parent="." unique_id=1640376612]
+
+[node name="StartXR" type="Node3D" parent="." unique_id=662251021]
+script = ExtResource("2_d55t1")
+
+[connection signal="xr_ended" from="StartXR" to="." method="_on_xr_ended"]
+[connection signal="xr_pose_recenter" from="StartXR" to="." method="_on_xr_pose_recenter"]

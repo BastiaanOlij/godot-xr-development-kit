@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xrt20000001"
-path.s3tc="res://.godot/imported/icon.png-50cacf8bcdb55c573a184e40f8020e2a.s3tc.ctex"
-path.etc2="res://.godot/imported/icon.png-50cacf8bcdb55c573a184e40f8020e2a.etc2.ctex"
+path.s3tc="res://.godot/imported/icon.png-07faafb3dbbc52a9bc5c47a8ce43cd15.s3tc.ctex"
+path.etc2="res://.godot/imported/icon.png-07faafb3dbbc52a9bc5c47a8ce43cd15.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/godot-xr-tools2/icon.png"
-dest_files=["res://.godot/imported/icon.png-50cacf8bcdb55c573a184e40f8020e2a.s3tc.ctex", "res://.godot/imported/icon.png-50cacf8bcdb55c573a184e40f8020e2a.etc2.ctex"]
+source_file="res://addons/godot-xr-development-kit/icon.png"
+dest_files=["res://.godot/imported/icon.png-07faafb3dbbc52a9bc5c47a8ce43cd15.s3tc.ctex", "res://.godot/imported/icon.png-07faafb3dbbc52a9bc5c47a8ce43cd15.etc2.ctex"]
 
 [params]
 

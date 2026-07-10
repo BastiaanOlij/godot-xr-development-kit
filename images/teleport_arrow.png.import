@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xrt2ie362ae"
-path.s3tc="res://.godot/imported/teleport_arrow.png-aeb3a056b93c36e0650f75238a3dba7d.s3tc.ctex"
-path.etc2="res://.godot/imported/teleport_arrow.png-aeb3a056b93c36e0650f75238a3dba7d.etc2.ctex"
+path.s3tc="res://.godot/imported/teleport_arrow.png-599369f5fa4cb93aa67ea34247e868af.s3tc.ctex"
+path.etc2="res://.godot/imported/teleport_arrow.png-599369f5fa4cb93aa67ea34247e868af.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/godot-xr-tools2/images/teleport_arrow.png"
-dest_files=["res://.godot/imported/teleport_arrow.png-aeb3a056b93c36e0650f75238a3dba7d.s3tc.ctex", "res://.godot/imported/teleport_arrow.png-aeb3a056b93c36e0650f75238a3dba7d.etc2.ctex"]
+source_file="res://addons/godot-xr-development-kit/images/teleport_arrow.png"
+dest_files=["res://.godot/imported/teleport_arrow.png-599369f5fa4cb93aa67ea34247e868af.s3tc.ctex", "res://.godot/imported/teleport_arrow.png-599369f5fa4cb93aa67ea34247e868af.etc2.ctex"]
 
 [params]
 

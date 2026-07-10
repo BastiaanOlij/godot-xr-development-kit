@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# plugin.gd
+# gxdk_rigid_body_behaviour.gd
 #-------------------------------------------------------------------------------
 # MIT License
 #
@@ -25,31 +25,39 @@
 #-------------------------------------------------------------------------------
 
 @tool
-extends EditorPlugin
+class_name GXDKRigidBodyBehaviour
+extends Node
 
-var snap_zone_gizmo: EditorNode3DGizmoPlugin
+## GXDKRigidBodyBehaviour is a decorator node for RigidBody3D
+## and allows us to define additional behaviour characteristics
+## when this object is being held by the player.
 
-func _enable_plugin():
-	# Add autoloads here.
-	pass
+## If [code]true[/code] and this object is picked up,
+## the object is centered on the first hand that picks
+## the object up.
+## If [code]false[/code] both hands equally effect
+## the positioning.
+@export var pivot_on_primary: bool = false
 
+## If [code]true[/code] and this object is picked up,
+## we apply the same logic as static body,
+## e.g. we move the player, not the static body.
+@export var grab_as_static_body: bool = false
 
-func _disable_plugin():
-	# Remove autoloads here.
-	pass
+static func get_behaviour_node(p_for: Node3D) -> GXDKRigidBodyBehaviour:
+	if p_for is RigidBody3D or p_for is PhysicalBone3D:
+		for child in p_for.get_children():
+			if child is GXDKRigidBodyBehaviour:
+				return child
 
+	return null
 
-func _enter_tree():
-	# Initialization of the plugin goes here.
+## Return any warnings on this node
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings: PackedStringArray
 
-	snap_zone_gizmo = load("res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone_gizmo.gd").new()
-	if snap_zone_gizmo:
-		add_node_3d_gizmo_plugin(snap_zone_gizmo)
+	var parent = get_parent()
+	if not parent or not (parent is RigidBody3D or parent is PhysicalBone3D):
+		warnings.push_back("This node must be a child of a RigidBody3D or PhysicalBone3D node!")
 
-
-func _exit_tree():
-	# Clean-up of the plugin goes here.
-
-	if snap_zone_gizmo:
-		remove_node_3d_gizmo_plugin(snap_zone_gizmo)
-		snap_zone_gizmo = null
+	return warnings

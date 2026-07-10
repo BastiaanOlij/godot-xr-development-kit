@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# plugin.gd
+# gxdk_logger.gd
 #-------------------------------------------------------------------------------
 # MIT License
 #
@@ -24,32 +24,52 @@
 # SOFTWARE.
 #-------------------------------------------------------------------------------
 
-@tool
-extends EditorPlugin
+class_name GXDKLogger
+extends Logger
 
-var snap_zone_gizmo: EditorNode3DGizmoPlugin
+## GXDKLogger is a Logger object that captures and caches new log entries
+## so they can be displayed to the user.
 
-func _enable_plugin():
-	# Add autoloads here.
-	pass
+signal message_changed
 
-
-func _disable_plugin():
-	# Remove autoloads here.
-	pass
+var mutex : Mutex = Mutex.new()
+var entries: PackedStringArray
 
 
-func _enter_tree():
-	# Initialization of the plugin goes here.
+## Get entries from our log.
+## If clear is [code]true[/code] we clear our buffer.
+func get_entries(clear: bool = true) -> PackedStringArray:
+	# Make a copy to return
+	mutex.lock()
+	var ret: PackedStringArray = entries.duplicate()
+	if clear:
+		entries.clear()
+	mutex.unlock()
 
-	snap_zone_gizmo = load("res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone_gizmo.gd").new()
-	if snap_zone_gizmo:
-		add_node_3d_gizmo_plugin(snap_zone_gizmo)
+	return ret
 
 
-func _exit_tree():
-	# Clean-up of the plugin goes here.
+func _log_error(function, file, line, code, rationale, editor_notify, error_type, script_backtraces):
+	# TODO construct a proper message
+	var message = rationale
 
-	if snap_zone_gizmo:
-		remove_node_3d_gizmo_plugin(snap_zone_gizmo)
-		snap_zone_gizmo = null
+	if error_type == ERROR_TYPE_ERROR:
+		message = "[color=red]" + message + "[/color]"
+	elif error_type == ERROR_TYPE_WARNING:
+		message = "[color=orange]" + message + "[/color]"
+
+	_add_message(message)
+
+
+func _log_message(message, error):
+	if error:
+		message = "[color=red]" + message + "[/color]"
+	_add_message(message)
+
+
+func _add_message(message):
+	mutex.lock()
+	entries.push_back(message)
+	mutex.unlock()
+
+	message_changed.emit()

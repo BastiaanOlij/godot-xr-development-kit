@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://xrt20000008"]
+
+[ext_resource type="Script" uid="uid://xrt2vsjqr85" path="res://addons/godot-xr-development-kit/prefabs/gxdk_static_player_rig.gd" id="1_v7cup"]
+[ext_resource type="Script" uid="uid://xrt2nm5hk3x" path="res://addons/godot-xr-development-kit/effects/fade/gxdk_fade.gd" id="2_h58fk"]
+
+[node name="GXDKStaticPlayerRig" type="XROrigin3D" unique_id=1537867311]
+script = ExtResource("1_v7cup")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=1266495699]
+cull_mask = 1048571
+
+[node name="Fade" type="Node3D" parent="XRCamera3D" unique_id=745232118]
+script = ExtResource("2_h58fk")
+message = "Please recenter your tracking space."
+metadata/_custom_type_script = "uid://xrt2nm5hk3x"
+
+[node name="LeftHand" type="XRController3D" parent="." unique_id=238260204]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -0.5)
+tracker = &"left_hand"
+show_when_tracked = true
+
+[node name="RightHand" type="XRController3D" parent="." unique_id=1298305180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.5)
+tracker = &"right_hand"
+show_when_tracked = true
+
+[connection signal="tracking_changed" from="LeftHand" to="." method="_on_left_hand_tracking_changed"]
+[connection signal="tracking_changed" from="RightHand" to="." method="_on_right_hand_tracking_changed"]

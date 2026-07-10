@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# plugin.gd
+# gxdk_snap_point.gd
 #-------------------------------------------------------------------------------
 # MIT License
 #
@@ -24,32 +24,10 @@
 # SOFTWARE.
 #-------------------------------------------------------------------------------
 
-@tool
-extends EditorPlugin
+class_name GXDKSnapPoint
+extends Node3D
 
-var snap_zone_gizmo: EditorNode3DGizmoPlugin
-
-func _enable_plugin():
-	# Add autoloads here.
-	pass
-
-
-func _disable_plugin():
-	# Remove autoloads here.
-	pass
-
-
-func _enter_tree():
-	# Initialization of the plugin goes here.
-
-	snap_zone_gizmo = load("res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone_gizmo.gd").new()
-	if snap_zone_gizmo:
-		add_node_3d_gizmo_plugin(snap_zone_gizmo)
-
-
-func _exit_tree():
-	# Clean-up of the plugin goes here.
-
-	if snap_zone_gizmo:
-		remove_node_3d_gizmo_plugin(snap_zone_gizmo)
-		snap_zone_gizmo = null
+## GXDK Snap Point Script
+##
+## Snap points are decorators for physics bodies that
+## specify points that connect to snap zones

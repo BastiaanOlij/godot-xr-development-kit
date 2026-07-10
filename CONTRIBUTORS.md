@@ -2,7 +2,7 @@ Contributors
 ============
 
 The main authors of this project are [Bastiaan Olij](https://github.com/BastiaanOlij) and [Malcolm Nixon](https://github.com/malcolmnixon), who manage the source repository found at:
-https://github.com/BastiaanOlij/godot-xr-tools2
+https://github.com/BastiaanOlij/godot-xr-development-kit
 
 Other people who have helped out by submitting fixes, enhancements, etc are:
 - [Florian Jung](https://github.com/Windfisch)
