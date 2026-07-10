@@ -1,6 +1,6 @@
 [gd_resource type="SphereMesh" format=3 uid="uid://xrt2ysawcr2"]
 
-[ext_resource type="Shader" uid="uid://xrt23qv3bw5" path="res://addons/godot-xr-tools2/shaders/unshaded_with_alpha.gdshader" id="1_rsqat"]
+[ext_resource type="Shader" uid="uid://xrt23qv3bw5" path="res://addons/godot-xr-development-kit/shaders/unshaded_with_alpha.gdshader" id="1_rsqat"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vveqh"]
 resource_local_to_scene = true

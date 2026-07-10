@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://xrt27oxtswc"]
+
+[ext_resource type="Script" uid="uid://xrt23dlfj0r" path="res://addons/godot-xr-development-kit/spectator/gxdk_stabilized_camera.gd" id="1_0aj8h"]
+
+[node name="GXDKStabilizedCamera" type="Node3D" unique_id=1402620245]
+script = ExtResource("1_0aj8h")
+
+[node name="StabilizedCamera3D" type="Camera3D" parent="." unique_id=658100998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+top_level = true
+cull_mask = 1048573

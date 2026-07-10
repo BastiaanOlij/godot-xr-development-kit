@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xrt2e4jwblb"]
 
-[ext_resource type="Shader" uid="uid://xrt2weecu2l" path="res://addons/godot-xr-tools2/shaders/unshaded_with_alpha_nodepth.gdshader" id="1_twogd"]
+[ext_resource type="Shader" uid="uid://xrt2weecu2l" path="res://addons/godot-xr-development-kit/shaders/unshaded_with_alpha_nodepth.gdshader" id="1_twogd"]
 
 [resource]
 render_priority = 0

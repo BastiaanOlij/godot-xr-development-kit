@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="XRT2LinearPIDController" load_steps=2 format=3 uid="uid://xrt2dxswf26"]
+[gd_resource type="Resource" script_class="GXDKLinearPIDController" format=3 uid="uid://xrt2dxswf26"]
 
-[ext_resource type="Script" uid="uid://xrt25cxqvsg" path="res://addons/godot-xr-tools2/misc/xrt2_linear_pid_controller.gd" id="1_xjn2i"]
+[ext_resource type="Script" uid="uid://xrt25cxqvsg" path="res://addons/godot-xr-development-kit/misc/gxdk_linear_pid_controller.gd" id="1_xjn2i"]
 
 [resource]
 script = ExtResource("1_xjn2i")

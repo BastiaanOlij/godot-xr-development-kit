@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# plugin.gd
+# gxdk_axis.gd
 #-------------------------------------------------------------------------------
 # MIT License
 #
@@ -25,31 +25,33 @@
 #-------------------------------------------------------------------------------
 
 @tool
-extends EditorPlugin
+extends Node3D
 
-var snap_zone_gizmo: EditorNode3DGizmoPlugin
+@export_multiline var label : String = "XRNode3D":
+	set(value):
+		label = value
+		if is_inside_tree():
+			_update_label()
 
-func _enable_plugin():
-	# Add autoloads here.
-	pass
+@export_flags_3d_render var layers = 1:
+	set(value):
+		layers = value
+		if is_inside_tree():
+			_layers_changed()
 
+func _update_label():
+	$Label3D.text = label
 
-func _disable_plugin():
-	# Remove autoloads here.
-	pass
+func _layers_changed():
+	$Forward.layers = layers
+	$Forward/Z.layers = layers
+	$Up.layers = layers
+	$Up/Y.layers = layers
+	$Left.layers = layers
+	$Left/X.layers = layers
+	$Label3D.layers = layers
 
-
-func _enter_tree():
-	# Initialization of the plugin goes here.
-
-	snap_zone_gizmo = load("res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone_gizmo.gd").new()
-	if snap_zone_gizmo:
-		add_node_3d_gizmo_plugin(snap_zone_gizmo)
-
-
-func _exit_tree():
-	# Clean-up of the plugin goes here.
-
-	if snap_zone_gizmo:
-		remove_node_3d_gizmo_plugin(snap_zone_gizmo)
-		snap_zone_gizmo = null
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	_update_label()
+	_layers_changed()

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://xrt2613s3v7"
-path="res://.godot/imported/RightHandHumanoid.gltf-5d3e91bbf46bd979500711a631af549e.scn"
+path="res://.godot/imported/RightHandHumanoid.gltf-947bf4a5f7401c4261490423db011cc3.scn"
 
 [deps]
 
-source_file="res://addons/godot-xr-tools2/hands/gltf/RightHandHumanoid.gltf"
-dest_files=["res://.godot/imported/RightHandHumanoid.gltf-5d3e91bbf46bd979500711a631af549e.scn"]
+source_file="res://addons/godot-xr-development-kit/hands/gltf/RightHandHumanoid.gltf"
+dest_files=["res://.godot/imported/RightHandHumanoid.gltf-947bf4a5f7401c4261490423db011cc3.scn"]
 
 [params]
 

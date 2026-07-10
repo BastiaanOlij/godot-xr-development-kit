@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# plugin.gd
+# gxdk_hand_pose.gd
 #-------------------------------------------------------------------------------
 # MIT License
 #
@@ -25,31 +25,43 @@
 #-------------------------------------------------------------------------------
 
 @tool
-extends EditorPlugin
+class_name GXDKHandPose
+extends Node3D
 
-var snap_zone_gizmo: EditorNode3DGizmoPlugin
+## GXDK Hand Pose Script
+##
+## This script properly offsets this node to the given action pose
+## related to the collision hand.
+## This has to be a child of a [GXDKCollisionHand] node.
 
-func _enable_plugin():
-	# Add autoloads here.
-	pass
+## Pose action for our pose. Must be a pose that exists in our OpenXR action map.
+## Note, use "aim" and "grip" for your "aim_pose" or "grip_pose" respectively. 
+@export var pose_action : String:
+	set(value):
+		pose_action = value
 
+# Verifies if we have a valid configuration.
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
 
-func _disable_plugin():
-	# Remove autoloads here.
-	pass
+	var parent = get_parent()
+	if not parent or not parent is GXDKCollisionHand:
+		warnings.push_back("This node must be a child of an GXDKCollisionHand node.")
 
+	# Return warnings
+	return warnings
 
-func _enter_tree():
-	# Initialization of the plugin goes here.
+func _process(_delta):
+	if Engine.is_editor_hint():
+		# Can't set this in editor
+		return
 
-	snap_zone_gizmo = load("res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone_gizmo.gd").new()
-	if snap_zone_gizmo:
-		add_node_3d_gizmo_plugin(snap_zone_gizmo)
+	if not pose_action:
+		return
 
-
-func _exit_tree():
-	# Clean-up of the plugin goes here.
-
-	if snap_zone_gizmo:
-		remove_node_3d_gizmo_plugin(snap_zone_gizmo)
-		snap_zone_gizmo = null
+	var parent = get_parent()
+	if parent and parent is GXDKCollisionHand:
+		var collision_hand : GXDKCollisionHand = parent
+		transform = collision_hand.get_pose_transform(pose_action)
+	else:
+		transform = Transform3D()

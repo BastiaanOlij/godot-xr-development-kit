@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# plugin.gd
+# gxdk_vector.gd
 #-------------------------------------------------------------------------------
 # MIT License
 #
@@ -25,31 +25,38 @@
 #-------------------------------------------------------------------------------
 
 @tool
-extends EditorPlugin
+extends Node3D
 
-var snap_zone_gizmo: EditorNode3DGizmoPlugin
+@export var color : Color = Color(1.0, 1.0, 1.0, 1.0):
+	set(value):
+		color = value
+		if is_inside_tree():
+			_on_color_changed()
 
-func _enable_plugin():
-	# Add autoloads here.
-	pass
-
-
-func _disable_plugin():
-	# Remove autoloads here.
-	pass
-
-
-func _enter_tree():
-	# Initialization of the plugin goes here.
-
-	snap_zone_gizmo = load("res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone_gizmo.gd").new()
-	if snap_zone_gizmo:
-		add_node_3d_gizmo_plugin(snap_zone_gizmo)
+@export_flags_3d_render var layers = 1:
+	set(value):
+		layers = value
+		if is_inside_tree():
+			_on_layers_changed()
 
 
-func _exit_tree():
-	# Clean-up of the plugin goes here.
+func place_vector(at: Vector3, direction: Vector3):
+	if abs(Vector3.UP.dot(at)) < 0.9:
+		transform = Transform3D(Basis.looking_at(direction, Vector3.UP, true), at)
+	else:
+		transform = Transform3D(Basis.looking_at(direction, Vector3.RIGHT, true), at)
 
-	if snap_zone_gizmo:
-		remove_node_3d_gizmo_plugin(snap_zone_gizmo)
-		snap_zone_gizmo = null
+
+func _on_color_changed():
+	var material : StandardMaterial3D = $Stem.material_override
+	material.albedo_color = color
+
+
+func _on_layers_changed():
+	$Stem.layers = layers
+	$Head.layers = layers
+
+
+func _ready():
+	_on_color_changed()
+	_on_layers_changed()

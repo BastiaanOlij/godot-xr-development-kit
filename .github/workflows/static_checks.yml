@@ -49,8 +49,8 @@ jobs:
         with:
           extra_args: --verbose --files ${{ env.CHANGED_FILES }}
 
-      # Lint the godot-xr-tools2 addon
-      - name: Lint Godot XR Tools 2
+      # Lint the godot-xr-development-kit addon
+      - name: Lint Godot XR Development Kit
         run: |
           for file in $( cat changed.txt | grep .gd )
           do

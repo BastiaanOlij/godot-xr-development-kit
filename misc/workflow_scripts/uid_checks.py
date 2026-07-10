@@ -5,6 +5,9 @@ import os
 import sys
 import re
 
+# Disable for now, we're done migrating files from XR Tools v1
+sys.exit(0)
+
 if len(sys.argv) < 2:
     print("Invalid usage of copyright_headers.py, it should be called with a path to one or multiple files.")
     sys.exit(1)

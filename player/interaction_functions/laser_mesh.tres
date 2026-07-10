@@ -1,6 +1,6 @@
 [gd_resource type="CylinderMesh" format=3 uid="uid://xrt2gae4i57"]
 
-[ext_resource type="Shader" uid="uid://xrt2083kp0a" path="res://addons/godot-xr-tools2/shaders/laser.gdshader" id="1_akutf"]
+[ext_resource type="Shader" uid="uid://xrt2083kp0a" path="res://addons/godot-xr-development-kit/shaders/laser.gdshader" id="1_akutf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tq5qc"]
 resource_local_to_scene = true
