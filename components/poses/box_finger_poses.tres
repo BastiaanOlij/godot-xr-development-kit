@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="XRT2FingerPoses" format=3 uid="uid://b1ahvycegofbi"]
+[gd_resource type="Resource" script_class="GXDKFingerPoses" format=3 uid="uid://b1ahvycegofbi"]
 
-[ext_resource type="Script" uid="uid://xrt22k41jo6" path="res://addons/godot-xr-tools2/hands/poses/xrt2_finger_poses.gd" id="1_e7d2x"]
+[ext_resource type="Script" uid="uid://xrt22k41jo6" path="res://addons/godot-xr-development-kit/hands/poses/gxdk_finger_poses.gd" id="1_e7d2x"]
 
 [resource]
 script = ExtResource("1_e7d2x")

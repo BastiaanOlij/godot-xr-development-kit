@@ -1,5 +1,5 @@
 @tool
-extends XRT2StageBase
+extends GXDKStageBase
 
 ## This is our teleport demo stage.
 ## This is a placeholder for now.

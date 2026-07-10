@@ -58,6 +58,11 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/climbing/materials/Walls.tres",
 "use_external/path": "uid://ko7f8v8278tr"
+},
+"climbwall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/climbing/materials/climbwall.tres",
+"use_external/path": "uid://dvivjblofyttn"
 }
 },
 "meshes": {

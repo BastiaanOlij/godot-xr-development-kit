@@ -1,9 +1,7 @@
-# Godot XR Tools v2 Demo
+# Godot XR Development Kit Demo
 
-This is the demo branch of the XR Tools v2 Godot plugin that shows you how you can incorporate XR Tools v2 into your project.
+This is the demo branch of the Godot XR Development Kit plugin that shows you how you can incorporate GXDK into your project.
 It is recommended to install the Godot OpenXR Vendor plugin, this is not included by default.
-
-This is just a place holder, to be continued...
 
 ## Spectator view
 

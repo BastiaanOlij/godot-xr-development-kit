@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Godot XR Tools 2 demo"
+config/name="Godot XR Development Kit demo"
 run/main_scene="uid://cj2av4gb40wn4"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
@@ -29,7 +29,7 @@ window/size/viewport_height.minimum_spectator=512
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-xr-tools2/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-xr-development-kit/plugin.cfg")
 
 [filesystem]
 

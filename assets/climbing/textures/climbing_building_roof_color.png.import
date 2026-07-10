@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btf7mfxee5ns5"
-path.s3tc="res://.godot/imported/climbing_building_roof_emission.png-0d03b1fb1edbc00fe049c8ce584e4d2b.s3tc.ctex"
-path.etc2="res://.godot/imported/climbing_building_roof_emission.png-0d03b1fb1edbc00fe049c8ce584e4d2b.etc2.ctex"
+uid="uid://bhl3qidprggps"
+path.s3tc="res://.godot/imported/climbing_building_roof_color.png-8973c6c3986ec21f86f9102bfba6e497.s3tc.ctex"
+path.etc2="res://.godot/imported/climbing_building_roof_color.png-8973c6c3986ec21f86f9102bfba6e497.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "8fe9fdec8ac97841cd44c996326cfdd6"
+"md5": "97f27169754d3386cb4f91f11367e6b2"
 }
 
 [deps]
 
-source_file="res://assets/climbing/climbing_building_roof_emission.png"
-dest_files=["res://.godot/imported/climbing_building_roof_emission.png-0d03b1fb1edbc00fe049c8ce584e4d2b.s3tc.ctex", "res://.godot/imported/climbing_building_roof_emission.png-0d03b1fb1edbc00fe049c8ce584e4d2b.etc2.ctex"]
+source_file="res://assets/climbing/textures/climbing_building_roof_color.png"
+dest_files=["res://.godot/imported/climbing_building_roof_color.png-8973c6c3986ec21f86f9102bfba6e497.s3tc.ctex", "res://.godot/imported/climbing_building_roof_color.png-8973c6c3986ec21f86f9102bfba6e497.etc2.ctex"]
 
 [params]
 

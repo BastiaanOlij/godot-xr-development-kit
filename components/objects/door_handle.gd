@@ -6,7 +6,7 @@ extends AnimatableBody3D
 var is_picked_up: bool = false
 
 
-func picked_up(by: XRT2Pickup):
+func picked_up(by: GXDKPickup):
 	is_picked_up = true
 	set_process(true)
 
@@ -14,20 +14,20 @@ func picked_up(by: XRT2Pickup):
 	var parent: RigidBody3D = get_parent()
 	if xr_col_hand and parent:
 		# Add the door as a collision exception as well
-		XRT2.add_collision_exception(xr_col_hand, parent)
+		GXDK.add_collision_exception(xr_col_hand, parent)
 
 
-func dropped(by: XRT2Pickup):
+func dropped(by: GXDKPickup):
 	is_picked_up = false
 
 	var xr_col_hand = by.get_xr_collision_hand()
 	var parent: RigidBody3D = get_parent()
 	if xr_col_hand and parent:
 		# Remove the door as a collision exception
-		XRT2.remove_collision_exception(xr_col_hand, parent)
+		GXDK.remove_collision_exception(xr_col_hand, parent)
 
 
-func _xr_custom_pickup_handler(pickup: XRT2Pickup, delta: float, controller_target: Transform3D, _global_target: Transform3D) -> bool:
+func _xr_custom_pickup_handler(pickup: GXDKPickup, delta: float, controller_target: Transform3D, _global_target: Transform3D) -> bool:
 	var parent: RigidBody3D = get_parent()
 	if not parent:
 		return true

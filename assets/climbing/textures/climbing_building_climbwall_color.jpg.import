@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh3x3iglct7la"
-path.s3tc="res://.godot/imported/climbing_building_walls_color.jpg-526ce21f178b67e8d3410cc7218d89f5.s3tc.ctex"
-path.etc2="res://.godot/imported/climbing_building_walls_color.jpg-526ce21f178b67e8d3410cc7218d89f5.etc2.ctex"
+uid="uid://cf0rrigck4xpc"
+path.s3tc="res://.godot/imported/climbing_building_climbwall_color.jpg-07955a755450d9741672366ae5018cc0.s3tc.ctex"
+path.etc2="res://.godot/imported/climbing_building_climbwall_color.jpg-07955a755450d9741672366ae5018cc0.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "3835ada29077ada902d2ef2ff86559a4"
+"md5": "5e454911d6516bcf5e6b37800f309969"
 }
 
 [deps]
 
-source_file="res://assets/climbing/climbing_building_walls_color.jpg"
-dest_files=["res://.godot/imported/climbing_building_walls_color.jpg-526ce21f178b67e8d3410cc7218d89f5.s3tc.ctex", "res://.godot/imported/climbing_building_walls_color.jpg-526ce21f178b67e8d3410cc7218d89f5.etc2.ctex"]
+source_file="res://assets/climbing/textures/climbing_building_climbwall_color.jpg"
+dest_files=["res://.godot/imported/climbing_building_climbwall_color.jpg-07955a755450d9741672366ae5018cc0.s3tc.ctex", "res://.godot/imported/climbing_building_climbwall_color.jpg-07955a755450d9741672366ae5018cc0.etc2.ctex"]
 
 [params]
 

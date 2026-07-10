@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhl3qidprggps"
-path.s3tc="res://.godot/imported/climbing_building_roof_color.png-816ec681adc42f7392402d61cabe51b7.s3tc.ctex"
-path.etc2="res://.godot/imported/climbing_building_roof_color.png-816ec681adc42f7392402d61cabe51b7.etc2.ctex"
+uid="uid://3o5gejhsh4um"
+path.s3tc="res://.godot/imported/climbing_building_walls_normal.jpg-28c5723f3427227384bf30812a0c6206.s3tc.ctex"
+path.etc2="res://.godot/imported/climbing_building_walls_normal.jpg-28c5723f3427227384bf30812a0c6206.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "97f27169754d3386cb4f91f11367e6b2"
+"md5": "c9350950bef173be054c2eea0add0e65"
 }
 
 [deps]
 
-source_file="res://assets/climbing/climbing_building_roof_color.png"
-dest_files=["res://.godot/imported/climbing_building_roof_color.png-816ec681adc42f7392402d61cabe51b7.s3tc.ctex", "res://.godot/imported/climbing_building_roof_color.png-816ec681adc42f7392402d61cabe51b7.etc2.ctex"]
+source_file="res://assets/climbing/textures/climbing_building_walls_normal.jpg"
+dest_files=["res://.godot/imported/climbing_building_walls_normal.jpg-28c5723f3427227384bf30812a0c6206.s3tc.ctex", "res://.godot/imported/climbing_building_walls_normal.jpg-28c5723f3427227384bf30812a0c6206.etc2.ctex"]
 
 [params]
 
@@ -26,12 +26,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/climbing/climbing_building_walls_normal.jpg"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

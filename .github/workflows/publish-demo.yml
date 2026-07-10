@@ -11,10 +11,10 @@ on:
 # Environment variables
 env:
   # Configure Godot version
-  GODOT_VERSION: 4.6.1
+  GODOT_VERSION: 4.6.3
 
   # OpenXR Vendors version
-  OPENXR_VENDORS_VERSION: 4.3.0-stable
+  OPENXR_VENDORS_VERSION: 4.3.1-stable
   
   # We haven't set up an itch.io page for this yet
   # Butler API Key (comment to disable)

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djjdpt6vpdljg" path="res://components/shapes/rigid_box.tscn" id="4_xu5kv"]
 [ext_resource type="PackedScene" uid="uid://cunilmctlx4pw" path="res://components/climbing/climbing_hold_purple.tscn" id="5_8mqay"]
 [ext_resource type="PackedScene" uid="uid://bpw8fh2d8fo4m" path="res://components/objects/stairs.tscn" id="5_s2yy1"]
-[ext_resource type="Script" uid="uid://xrt2jog5h0j" path="res://addons/godot-xr-tools2/components/decorators/xrt2_grab_point.gd" id="6_27ely"]
+[ext_resource type="Script" uid="uid://xrt2jog5h0j" path="res://addons/godot-xr-development-kit/components/decorators/gxdk_grab_point.gd" id="6_27ely"]
 [ext_resource type="PackedScene" uid="uid://c4tgb1fvpccgb" path="res://components/objects/ramps.tscn" id="6_dhxdq"]
 [ext_resource type="PackedScene" uid="uid://cdsp0awdqvwc7" path="res://components/climbing/climbing_hold_green.tscn" id="6_uelbq"]
 [ext_resource type="ArrayMesh" uid="uid://2iuv58i1suq2" path="res://assets/low-poly-clouds-pack-1/meshes/Cloud_1_Icosphere_044.res" id="6_xu5kv"]
@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://ce28s2x0jlug7" path="res://components/shapes/railing.tscn" id="7_8mqay"]
 [ext_resource type="ArrayMesh" uid="uid://de02agai7haih" path="res://assets/low-poly-clouds-pack-1/meshes/Cloud_2_Icosphere_043.res" id="7_dhxdq"]
 [ext_resource type="PackedScene" uid="uid://bdy7yi08b7b44" path="res://components/shapes/rung.tscn" id="8_uelbq"]
-[ext_resource type="Script" uid="uid://xrt2gfbq77m" path="res://addons/godot-xr-tools2/components/snapping/xrt2_snap_zone.gd" id="13_ukaol"]
-[ext_resource type="Script" uid="uid://xrt2pc3rnpd" path="res://addons/godot-xr-tools2/components/snapping/xrt2_snap_point.gd" id="14_ny778"]
+[ext_resource type="Script" uid="uid://xrt2gfbq77m" path="res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone.gd" id="13_ukaol"]
+[ext_resource type="Script" uid="uid://xrt2pc3rnpd" path="res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_point.gd" id="14_ny778"]
 [ext_resource type="PackedScene" uid="uid://dmgrvnq7g1how" path="res://components/objects/door.tscn" id="17_ss0mf"]
 [ext_resource type="Script" uid="uid://b68rrwdd4s7ii" path="res://components/portal/portal_probe.gd" id="20_4813c"]
 
@@ -358,13 +358,13 @@ mass = 20.0
 size = Vector3(0.2, 0.2, 0.2)
 color = Color(0.57990265, 0.58945864, 0.31561917, 1)
 
-[node name="XRT2SnapZone" type="Node3D" parent="Table/Box03" unique_id=1695762170]
+[node name="GXDKSnapZone" type="Node3D" parent="Table/Box03" unique_id=1695762170]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 script = ExtResource("13_ukaol")
 require_group = "Boxes"
 metadata/_custom_type_script = "uid://xrt2gfbq77m"
 
-[node name="Visualise" type="MeshInstance3D" parent="Table/Box03/XRT2SnapZone" unique_id=459197379]
+[node name="Visualise" type="MeshInstance3D" parent="Table/Box03/GXDKSnapZone" unique_id=459197379]
 mesh = SubResource("CylinderMesh_ukaol")
 
 [node name="Box04" parent="Table" unique_id=1066586118 instance=ExtResource("4_xu5kv")]
@@ -398,27 +398,27 @@ finger_poses = ExtResource("7_0mmyo")
 show_hand = true
 metadata/_custom_type_script = "uid://xrt2jog5h0j"
 
-[node name="XRT2SnapPoint" type="Node3D" parent="Table/Test" unique_id=121061795]
+[node name="GXDKSnapPoint" type="Node3D" parent="Table/Test" unique_id=121061795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 script = ExtResource("14_ny778")
 metadata/_custom_type_script = "uid://xrt2pc3rnpd"
 
-[node name="XRT2SnapZone01" type="Node3D" parent="Table" unique_id=745750385]
+[node name="GXDKSnapZone01" type="Node3D" parent="Table" unique_id=745750385]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1037639, 0.38173616)
 script = ExtResource("13_ukaol")
 radius = 0.15037440999999999
 metadata/_custom_type_script = "uid://xrt2gfbq77m"
 
-[node name="Visualise" type="MeshInstance3D" parent="Table/XRT2SnapZone01" unique_id=1900679726]
+[node name="Visualise" type="MeshInstance3D" parent="Table/GXDKSnapZone01" unique_id=1900679726]
 mesh = SubResource("CylinderMesh_ukaol")
 
-[node name="XRT2SnapZone02" type="Node3D" parent="Table" unique_id=544788568]
+[node name="GXDKSnapZone02" type="Node3D" parent="Table" unique_id=544788568]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20692211, 1.1037639, 0.38173616)
 script = ExtResource("13_ukaol")
 radius = 0.15037440999999999
 metadata/_custom_type_script = "uid://xrt2gfbq77m"
 
-[node name="Visualise" type="MeshInstance3D" parent="Table/XRT2SnapZone02" unique_id=2024188440]
+[node name="Visualise" type="MeshInstance3D" parent="Table/GXDKSnapZone02" unique_id=2024188440]
 mesh = SubResource("CylinderMesh_ukaol")
 
 [node name="Stairs" parent="." unique_id=1413836190 instance=ExtResource("5_s2yy1")]
