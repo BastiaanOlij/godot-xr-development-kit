@@ -254,6 +254,7 @@ var _target_offset: Transform3D
 # Hand meshes
 var _hand_mesh: Node3D
 var _ghost_mesh: Node3D
+var _missing_bones: PackedStringArray
 var _tween: Tween
 
 # Skeleton collisions
@@ -488,6 +489,12 @@ func get_bone_transform(bone_name : String) -> Transform3D:
 		return Transform3D()
 
 	var bone_idx = skeleton.find_bone(bone_name)
+	if bone_idx == -1:
+		if not _missing_bones.has(bone_name):
+			_missing_bones.push_back(bone_name)
+			push_error("Bone %s is not part of the hand skeleton." % [ bone_name ])
+		return Transform3D()
+
 	var bone_transform : Transform3D = _hand_skeleton.get_bone_global_pose(bone_idx)
 
 	var orient_to_godot : Basis = Basis.from_euler(Vector3(0.5 * PI, 0.5 * -PI, 0.0)) if hand==0 \
@@ -888,6 +895,8 @@ func _update_hand_meshes():
 		remove_child(_hand_mesh)
 		_hand_mesh.queue_free()
 		_hand_mesh = null
+
+	_missing_bones.clear()
 
 	if _ghost_skeleton:
 		_ghost_skeleton.skeleton_updated.disconnect(_on_skeleton_updated)
