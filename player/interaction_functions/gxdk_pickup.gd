@@ -148,7 +148,7 @@ var _two_hand_delay: float = 0.0
 
 # Static object lerp duration, time in second that it will take to rotate move the players body into position.
 # Should make this setable at some point
-var _static_velocity_lerp_duration: float = 0.1 
+var _static_velocity_lerp_duration: float = 0.1
 
 # If true, we are the primary hand holding this object (for 2 handed)
 var _is_primary: bool = false
@@ -328,9 +328,8 @@ func pickup_object(object : GrabObject):
 		# Make a collision exception between hand and picked up object
 		GXDK.add_collision_exception(_xr_collision_hand, _picked_up)
 
-	# Find our grab point (if any).
-	# Note, we're already handled our exclusive logic, can ignore that here.
-	_grab_point = _get_closest_grabpoint(_picked_up, global_position)
+	# Use the grab point we detected.
+	_grab_point = object.grab_point
 
 	# Figure out our grab position and finger poses
 	var grab_transform: Transform3D 
@@ -410,12 +409,17 @@ func drop_held_object( \
 	if _xr_player_object and (was_picked_up is RigidBody3D or was_picked_up is PhysicalBone3D):
 		GXDK.remove_collision_exception(_xr_player_object, was_picked_up)
 
-	var other = picked_up_by(was_picked_up)
-	if other:
-		# If it isn't already primary, this is now our primary
-		other._is_primary = true
-		other._two_hand_delay = two_hand_delay
-		other._picked_up_to_org_target = was_picked_up.global_transform.inverse() * other.get_controller_target()
+	for other : GXDKPickup in _pickup_handlers:
+		if other == self:
+			# This is us
+			pass
+		elif is_instance_valid(other._picked_up):
+			if other._picked_up == was_picked_up:
+				# If it isn't already primary, this is now our primary
+				other._is_primary = true
+
+			other._two_hand_delay = two_hand_delay
+			other._picked_up_to_org_target = other._picked_up.global_transform.inverse() * other.get_controller_target()
 
 	if was_picked_up.has_method("dropped"):
 		was_picked_up.dropped(self)
@@ -904,67 +908,99 @@ func _handle_picked_up_dynamic(delta: float, controller_target: Transform3D, glo
 # Handle moving a picked up static object (StaticBody3D/AnimatableBody3D) 
 # In this scenario, we want to rotate/move our player
 func _handle_picked_up_static(delta: float, controller_target: Transform3D, global_target: Transform3D) -> void:
+	if not _xr_player_object:
+		return
+
 	# Find any other pickup handler that has picked up something (should be our other hand).
 	var other: GXDKPickup = picked_up_by(null, PickedUpByMode.ANY, [ self ])
 	if other and not _is_left_hand():
 		# If both hands are holding something, we only process the left hand.
 		return
 
-	var target_basis: Basis = Basis()
-	var lerp_factor: float = delta / _static_velocity_lerp_duration
+	var target_rotation: Basis
+	var apply_rotation: bool = true
+	var lerp_factor: float = clamp(delta / _static_velocity_lerp_duration, 0.01, 1.0)
 
-	# Get are we moving from and to, we want this to be exact:
-	var start_position: Vector3 = controller_target.origin
-	var dest_position: Vector3 = _picked_up.global_transform * _grab_offset.origin
+	# We'll attempt to move from our current controller position to our original position.
+	var start: Transform3D = controller_target
+	var dest: Transform3D = _picked_up.global_transform * _picked_up_to_org_target
 
 	if other:
-		# Q: Should we use original orientation here too?
-
 		var other_picked_up: PhysicsBody3D = other.get_picked_up()
-		var other_grab_offset: Transform3D = other.get_grab_offset()
-		var other_grab_origin: Vector3 = other_picked_up.global_transform * other_grab_offset.origin
-		var other_controller_target: Transform3D = other.get_controller_target()
+		var other_start: Transform3D = other.get_controller_target()
+		var other_dest: Transform3D = other_picked_up.global_transform * other._picked_up_to_org_target
 
-		# We rotate our player in reverse
-		var start_vector = (other_controller_target.origin - start_position).normalized()
-		var dest_vector = (other_grab_origin - dest_position).normalized()
-		var cross: Vector3 = start_vector.cross(dest_vector).normalized()
-		var angle: float = acos(start_vector.dot(dest_vector))
+		# Find halfway points.
+		start.origin = (start.origin + other_start.origin) * 0.5
+		dest.origin = (dest.origin + other_dest.origin) * 0.5
 
-		if cross.length() > 0.0 and angle > 0.0:
-			target_basis = Basis(cross, angle * lerp_factor)
+		# Use the angle between our hands to create our start orientation.
+		start.basis.y = _xr_player_object.basis.y
+		start.basis.x = other_start.origin - start.origin
+		start.basis.x = (start.basis.x - start.basis.x.project(start.basis.y))
+		if start.basis.x.length_squared() < 0.0001:
+			# Must be parallel to our y vector, we can't determine a rotation
+			apply_rotation = false
+		else:
+			start.basis.x = start.basis.x.normalized()
+			start.basis.z = start.basis.x.cross(start.basis.y).normalized()
 
-		# Now calculate how much our tracked hands are rotated along our destination vector
-		var primary_angle = GXDK.angle_in_plane(dest_vector, controller_target.basis.y, target_basis * _picked_up.global_basis * _grab_offset.basis.y)
-		var secondary_angle = GXDK.angle_in_plane(dest_vector, other_controller_target.basis.y, target_basis * other_picked_up.global_basis * other_grab_offset.basis.y)
+		# And the same for our destination orientation.
+		dest.basis.y = _xr_player_object.basis.y
+		dest.basis.x = other_dest.origin - dest.origin
+		dest.basis.x = (dest.basis.x - dest.basis.x.project(dest.basis.y))
+		if dest.basis.x.length_squared() < 0.0001:
+			# Must be parallel to our y vector, we can't determine a rotation
+			apply_rotation = false
+		else:
+			dest.basis.x = dest.basis.x.normalized()
+			dest.basis.z = dest.basis.x.cross(dest.basis.y).normalized()
 
-		target_basis = Basis(dest_vector, (primary_angle + secondary_angle) * 0.5 * lerp_factor) * target_basis * _xr_player_object.global_basis
-
-		# And update for two handed linear velocity
-		start_position = (start_position + other_controller_target.origin) * 0.5
-		dest_position = (dest_position + other_grab_origin) * 0.5
+		if apply_rotation:
+			target_rotation = dest.basis * start.basis.inverse()
 	else:
-		# Single handed, determine rotation difference based on our rotation when we grabbed the static object
-		var dest_transform: Transform3D = _picked_up.global_transform * _picked_up_to_org_target
-		var axis_angle: Vector3 = GXDK.rotation_to_axis_angle(controller_target.basis, dest_transform.basis)
-
-		# And apply partial rotation to our player body
-		target_basis = Basis(axis_angle.normalized(), axis_angle.length() * lerp_factor) * _xr_player_object.global_basis
+		target_rotation = dest.basis * start.basis.inverse()
 
 	# Apply our results based on our primary hand
 	if _xr_player_object is RigidBody3D:
-		# Apply torque to player object
-		GXDK.apply_torque_to_target(delta, _xr_player_object, target_basis)
+		# This needs testing, we currently don't have a demo using RigidBody3D...
+		# Might need to limit rotation around the rigidbody Y axis as well.
+
+		if apply_rotation:
+			# Apply our rotation to our target
+			var target_basis = target_rotation * _xr_player_object.global_basis
+
+			# Rotating the player will change our start position. We need to adjust!
+			start.origin = _xr_player_object.global_position + ((start.origin - _xr_player_object.global_position) * target_rotation)
+
+			# Apply torque to player object
+			GXDK.apply_torque_to_target(delta, _xr_player_object, target_basis)
 
 		# Apply forces to player object
-		GXDK.apply_force_to_target(delta, _xr_player_object, _xr_player_object.global_position + (dest_position - start_position))
+		GXDK.apply_force_to_target(delta, _xr_player_object, _xr_player_object.global_position + dest.origin - start.origin)
 	elif _xr_player_object is CharacterBody3D:
-		# We don't have an angular velocity here, nor collision detection so we're just going to rotate around the local y-axis
-		target_basis = target_basis.looking_at(target_basis.z - target_basis.z.project(_xr_player_object.global_basis.y), _xr_player_object.global_basis.y, true)
-		_xr_player_object.global_basis = target_basis
+		if apply_rotation:
+			# Apply our rotation to our target
+			var target_basis = target_rotation * _xr_player_object.global_basis
+
+			# Restrict rotation to be around our character bodies up vector
+			target_basis.y = _xr_player_object.global_basis.y
+			target_basis.x = (target_basis.x - target_basis.x.project(target_basis.y)).normalized()
+			target_basis.z = target_basis.x.cross(target_basis.y)
+
+			target_basis = _xr_player_object.global_basis.slerp(target_basis, lerp_factor)
+
+			var actual_rotation = _xr_player_object.global_basis.inverse() * target_basis
+
+			# We don't have a function to rotate with collision detection, so just apply
+			_xr_player_object.global_basis = target_basis
+
+			# Rotating the player will change our start position. We need to adjust!
+			start.origin = _xr_player_object.global_position + ((start.origin - _xr_player_object.global_position) * actual_rotation)
 
 		# And adjust linear velocity of player object
-		var required_linear_velocity: Vector3 = (dest_position - start_position) / delta
+		var movement = dest.origin - start.origin
+		var required_linear_velocity: Vector3 = movement / delta
 		_xr_player_object.velocity = lerp(_xr_player_object.velocity, required_linear_velocity, lerp_factor)
 
 
