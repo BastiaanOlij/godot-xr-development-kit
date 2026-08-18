@@ -6,7 +6,7 @@
 script = ExtResource("1_xjn2i")
 proportional_gain = 0.8
 integral_gain = 0.1
-integral_saturation = 10.0
+integral_saturation = 0.1
 derivative_gain = 0.2
 max_output = 500.0
 metadata/_custom_type_script = "uid://xrt25cxqvsg"

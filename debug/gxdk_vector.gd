@@ -41,7 +41,7 @@ extends Node3D
 
 
 func place_vector(at: Vector3, direction: Vector3):
-	if abs(Vector3.UP.dot(at)) < 0.9:
+	if abs(Vector3.UP.dot(direction)) < 0.9:
 		transform = Transform3D(Basis.looking_at(direction, Vector3.UP, true), at)
 	else:
 		transform = Transform3D(Basis.looking_at(direction, Vector3.RIGHT, true), at)
