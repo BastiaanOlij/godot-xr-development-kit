@@ -12,7 +12,7 @@ script = ExtResource("1_7f1qv")
 
 [node name="GXDKCharacterBody3D" parent="." unique_id=795871005 instance=ExtResource("3_gn4u1")]
 
-[node name="GXDKTeleport" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" parent_id_path=PackedInt32Array(795871005, 360497191) index="2" unique_id=2011988880]
+[node name="GXDKTeleport" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" parent_id_path=PackedInt32Array(795871005, 360497191) index="0" unique_id=2011988880]
 transform = Transform3D(0.99500257, -0.0035018958, 0.09978712, -0.003500683, 0.99754673, 0.069914035, -0.09978719, -0.069914, 0.99254906, -0.0011376105, -0.0007457088, -0.022510625)
 script = ExtResource("4_xtqrp")
 bone_name = "LeftMiddleMetacarpal"
