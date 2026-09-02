@@ -20,7 +20,7 @@ metadata/_custom_type_script = "uid://xrt23qrb4js"
 
 [node name="TurnMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" parent_id_path=PackedInt32Array(795871005, 360497191) index="3" unique_id=846136560]
 script = ExtResource("5_5hmy8")
-movement_action = "move"
+movement_action = "primary"
 metadata/_custom_type_script = "uid://xrt2ebknph2"
 
 [node name="GXDKPickup" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/RightCollisionHand" parent_id_path=PackedInt32Array(795871005, 709012286) index="2" unique_id=2103181334]
@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://xrt23qrb4js"
 
 [node name="StrafeMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/RightCollisionHand" parent_id_path=PackedInt32Array(795871005, 709012286) index="3" unique_id=307544332]
 script = ExtResource("5_5hmy8")
-movement_action = "move"
+movement_action = "primary"
 rotation_speed = 0.0
 strafe_movement_speed = 3.0
 metadata/_custom_type_script = "uid://xrt2ebknph2"

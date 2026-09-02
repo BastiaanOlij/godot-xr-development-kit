@@ -1,8 +1,8 @@
 [gd_resource type="OpenXRActionMap" format=3 uid="uid://d2gs06i31m6au"]
 
 [sub_resource type="OpenXRAction" id="OpenXRAction_pbs6g"]
-resource_name = "move"
-localized_name = "Move character"
+resource_name = "primary"
+localized_name = "Primary joystick/thumbstick/trackpad"
 action_type = 2
 toplevel_paths = PackedStringArray("/user/hand/left", "/user/hand/right")
 
@@ -19,8 +19,8 @@ action_type = 4
 toplevel_paths = PackedStringArray("/user/hand/left", "/user/hand/right")
 
 [sub_resource type="OpenXRAction" id="OpenXRAction_36iii"]
-resource_name = "grab"
-localized_name = "Grab object"
+resource_name = "grip"
+localized_name = "Grip"
 toplevel_paths = PackedStringArray("/user/hand/left", "/user/hand/right")
 
 [sub_resource type="OpenXRAction" id="OpenXRAction_6ivru"]
@@ -29,8 +29,8 @@ localized_name = "Trigger"
 toplevel_paths = PackedStringArray("/user/hand/left", "/user/hand/right")
 
 [sub_resource type="OpenXRAction" id="OpenXRAction_vfhwq"]
-resource_name = "teleport"
-localized_name = "Enable teleport"
+resource_name = "primary_click"
+localized_name = "Primary joystick/thumbstick/trackpad click"
 action_type = 0
 toplevel_paths = PackedStringArray("/user/hand/left", "/user/hand/right")
 

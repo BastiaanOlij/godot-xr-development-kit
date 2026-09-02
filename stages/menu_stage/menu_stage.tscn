@@ -35,13 +35,13 @@ script = ExtResource("1_qi4g2")
 
 [node name="TurnMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" parent_id_path=PackedInt32Array(795871005, 360497191) index="0" unique_id=1896713981]
 script = ExtResource("4_n0kdf")
-movement_action = "move"
+movement_action = "primary"
 forward_movement_speed = 0.0
 movement_acceleration = 0.0
 
 [node name="StrafeMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/RightCollisionHand" parent_id_path=PackedInt32Array(795871005, 709012286) index="0" unique_id=1832545822]
 script = ExtResource("4_n0kdf")
-movement_action = "move"
+movement_action = "primary"
 rotation_speed = 0.0
 strafe_movement_speed = 2.5
 
