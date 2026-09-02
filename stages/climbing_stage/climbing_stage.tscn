@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://xrt2ebknph2" path="res://addons/godot-xr-development-kit/player/movement_providers/gxdk_direct_movement.gd" id="3_7aybs"]
 [ext_resource type="Script" uid="uid://xrt23qrb4js" path="res://addons/godot-xr-development-kit/player/interaction_functions/gxdk_pickup.gd" id="4_rayd5"]
 [ext_resource type="PackedScene" uid="uid://cywcy5w53kcp8" path="res://stages/climbing_stage/climbing_room.tscn" id="5_cgxmv"]
+[ext_resource type="PackedScene" uid="uid://xrt2ef8ojbk" path="res://addons/godot-xr-development-kit/debug/gxdk_log.tscn" id="5_rayd5"]
 [ext_resource type="PackedScene" uid="uid://cqxqi2xmp28v7" path="res://components/portal/portal.tscn" id="6_vqw5o"]
 
 [node name="ClimbingStage" type="Node3D" unique_id=971772542]
@@ -13,28 +14,37 @@ script = ExtResource("1_vqw5o")
 [node name="GXDKCharacterBody3D" parent="." unique_id=795871005 instance=ExtResource("2_bb573")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 4.371139e-08)
 
-[node name="TurnMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" parent_id_path=PackedInt32Array(795871005, 360497191) index="0" unique_id=2081252770]
+[node name="LeftCollisionHand" parent="GXDKCharacterBody3D/XROrigin3D" parent_id_path=PackedInt32Array(795871005, 1272081866) index="2" unique_id=360497191]
+collision_mask = 3
+
+[node name="TurnMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" index="0" unique_id=2081252770]
 script = ExtResource("3_7aybs")
 movement_action = "move"
 forward_movement_speed = 0.0
 metadata/_custom_type_script = "uid://xrt2ebknph2"
 
-[node name="GXDKPickup" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" parent_id_path=PackedInt32Array(795871005, 360497191) index="1" unique_id=1864264001]
+[node name="GXDKPickup" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/LeftCollisionHand" index="1" unique_id=1864264001]
 transform = Transform3D(0.99500257, -0.0035018958, 0.09978712, -0.003500683, 0.99754673, 0.069914035, -0.09978719, -0.069914, 0.99254906, -0.02500046, 0.003554154, 0.040035933)
 script = ExtResource("4_rayd5")
 metadata/_custom_type_script = "uid://xrt23qrb4js"
 
-[node name="StrafeMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/RightCollisionHand" parent_id_path=PackedInt32Array(795871005, 709012286) index="0" unique_id=46491692]
+[node name="RightCollisionHand" parent="GXDKCharacterBody3D/XROrigin3D" parent_id_path=PackedInt32Array(795871005, 1272081866) index="3" unique_id=709012286]
+collision_mask = 3
+
+[node name="StrafeMovement" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/RightCollisionHand" index="0" unique_id=46491692]
 script = ExtResource("3_7aybs")
 movement_action = "move"
 rotation_speed = 0.0
 strafe_movement_speed = 3.0
 metadata/_custom_type_script = "uid://xrt2ebknph2"
 
-[node name="GXDKPickup" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/RightCollisionHand" parent_id_path=PackedInt32Array(795871005, 709012286) index="1" unique_id=1214556484]
+[node name="GXDKPickup" type="Node3D" parent="GXDKCharacterBody3D/XROrigin3D/RightCollisionHand" index="1" unique_id=1214556484]
 transform = Transform3D(0.99500257, 0.0035019002, -0.09978717, 0.003500686, 0.99754673, 0.06991408, 0.099787235, -0.06991404, 0.99254906, 0.02500046, 0.003554154, 0.040035933)
 script = ExtResource("4_rayd5")
 metadata/_custom_type_script = "uid://xrt23qrb4js"
+
+[node name="GXDKLog" parent="GXDKCharacterBody3D" unique_id=1144788364 instance=ExtResource("5_rayd5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05664897, 1.6291572, -0.76285005)
 
 [node name="ClimbingRoom" parent="." unique_id=906329658 instance=ExtResource("5_cgxmv")]
 
