@@ -54,14 +54,14 @@ signal teleport_done
 @export_group("Input")
 
 ## Action map input for out teleport function.
-@export var teleport_action: String = "teleport"
+@export var teleport_action: String = "primary_click"
 
 ## Do we need to hold our button to teleport,
 ## or do we toggle it?
 @export_enum("Toggle", "Hold") var teleport_action_mode: int = 0
 
 ## Action map input for rotating our target
-@export var rotate_action: String = "move.x"
+@export var rotate_action: String = "primary.x"
 
 ## Maximum angle between target surface and player
 @export_range(0.0, 1400.0, 1.0, "radians_as_degrees", "suffix:°/s") var max_rotation_speed: float = deg_to_rad(360.0)

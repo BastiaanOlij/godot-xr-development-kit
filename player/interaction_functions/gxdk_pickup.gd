@@ -93,7 +93,7 @@ static var _highlighted_bodies: Dictionary[Node3D, HighlightedBody]
 			_editor_mesh_instance.position = detection_offset
 
 ## The action we check when grabbing things
-@export var grab_action: String = "grab"
+@export var grab_action: String = "grip"
 
 ## If false we need to continously hold our grab button, if true we toggle
 ## Note: with keyboard entry toggle is enforced
