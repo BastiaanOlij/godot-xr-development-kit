@@ -32,12 +32,12 @@ layers = 2
 [node name="LeftCollisionHand" type="RigidBody3D" parent="XROrigin3D" unique_id=360497191]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
 script = ExtResource("4_tec0s")
-grip_action = "grab"
+grip_action = "grip"
 metadata/_custom_type_script = "uid://xrt2ebmt58c"
 
 [node name="RightCollisionHand" type="RigidBody3D" parent="XROrigin3D" unique_id=709012286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 script = ExtResource("4_tec0s")
 hand = 1
-grip_action = "grab"
+grip_action = "grip"
 metadata/_custom_type_script = "uid://xrt2ebmt58c"
