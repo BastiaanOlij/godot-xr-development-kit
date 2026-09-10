@@ -216,7 +216,7 @@ static func apply_torque_to_target(
 	var velocity : Vector3 = -apply_to.angular_velocity
 	if parent_angular_velocity.length() > 0.0:
 		# Localise and add our parents angular velocity
-		velocity += apply_to.global_basis.inverse() * parent_global_orientation * parent_angular_velocity
+		velocity += parent_global_orientation * parent_angular_velocity
 
 	# Q: Shouldn't we subtract the current velocity?!?
 	var needed_angular_acceleration : Vector3 = (delta_axis_angle + (velocity * delta)) / half_t2
