@@ -3,6 +3,15 @@
 This is the demo branch of the Godot XR Development Kit plugin that shows you how you can incorporate GXDK into your project.
 It is recommended to install the Godot OpenXR Vendor plugin, this is not included by default.
 
+## Cloning this repo
+
+As Godot XR Development Kit is included as a submodule in the addons folder of this demo, you need to recursively clone this repository with the following command:
+```
+git clone -b demo --recurse-submodules https://github.com/GodotVR/godot-xr-development-kit
+```
+
+Alternatively, you can download the demo from the releases page either as a fully running application for various platforms, or download `godot-xr-development-kit-demo.zip` for a fully setup Godot project. 
+
 ## Spectator view
 
 This demo includes a spectator view solution.
