@@ -6,8 +6,6 @@
 > It also approaches a number of things structurally different from XR Tools.
 >
 > Check the demo branch for a demo showcasing current features.
->
-> While under early development this repository is hosted on my personal GitHub space but it will soon move to the GodotVR repository.
 
 This repository contains a number of support files and support scenes that can be used together with the various AR and VR interfaces for the Godot game engine.
 
