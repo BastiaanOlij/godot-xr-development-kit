@@ -5,22 +5,20 @@
 > It does not have feature parity with XR Tools and likely won't until a few releases have been made.
 > It also approaches a number of things structurally different from XR Tools.
 >
-> It is by no stretch of the imagination production ready, use at your own peril.
-> 
 > Check the demo branch for a demo showcasing current features.
 >
 > While under early development this repository is hosted on my personal GitHub space but it will soon move to the GodotVR repository.
 
 This repository contains a number of support files and support scenes that can be used together with the various AR and VR interfaces for the Godot game engine.
 
-![GitHub forks](https://img.shields.io/github/forks/BastiaanOlij/godot-xr-development-kit?style=plastic)
-![GitHub Repo stars](https://img.shields.io/github/stars/BastiaanOlij/godot-xr-development-kit?style=plastic)
-![GitHub contributors](https://img.shields.io/github/contributors/BastiaanOlij/godot-xr-development-kit?style=plastic)
-![GitHub](https://img.shields.io/github/license/BastiaanOlij/godot-xr-development-kit?style=plastic)
+![GitHub forks](https://img.shields.io/github/forks/GodotVR/godot-xr-development-kit?style=plastic)
+![GitHub Repo stars](https://img.shields.io/github/stars/GodotVR/godot-xr-development-kit?style=plastic)
+![GitHub contributors](https://img.shields.io/github/contributors/GodotVR/godot-xr-development-kit?style=plastic)
+![GitHub](https://img.shields.io/github/license/GodotVR/godot-xr-development-kit?style=plastic)
 
 ## Versions
 
-Official releases are tagged and can be found [here](https://github.com/BastiaanOlij/godot-xr-development-kit/releases).
+Official releases are tagged and can be found [here](https://github.com/GodotVR/godot-xr-development-kit/releases).
 
 The following branches are in active development:
 
@@ -29,9 +27,6 @@ The following branches are in active development:
 |  main    | Current development branch    |  Godot 4.6+     |
 |  demo    | Demo project for GXDK         |  Godot 4.6+     |
 
-> [!Note]
-> This repo is temporarily hosted on https://github.com/BastiaanOlij but will be moved to https://github.com/GodotVR once we're closer to a stable release.
-
 > [!IMPORTANT]
 > CI for release builds run through tags on the `demo` branch of this repository.
 > CI on the `main` branch purely applies formatting checks.
@@ -39,7 +34,7 @@ The following branches are in active development:
 ## How to use
 
 Documentation for this plugin will become available at a later date when the plugin is more complete.
-For now check out [the demo branch](https://github.com/BastiaanOlij/godot-xr-development-kit/tree/demo) in this repository.
+For now check out [the demo branch](https://github.com/GodotVR/godot-xr-development-kit/tree/demo) in this repository.
 
 ## Installation
 
@@ -63,7 +58,7 @@ Open a command prompt and in the root of your Godot project execute:
 ```
 mkdir addons
 cd addons
-git submodule add https://github.com/BastiaanOlij/godot-xr-development-kit
+git submodule add https://github.com/GodotVR/godot-xr-development-kit
 ```
 
 If you require a specific version of this plugin, cd into the `godot-xr-development-kit` folder and use `git checkout` to switch to the correct tag or commit.
@@ -81,7 +76,7 @@ While care is taken that the functionality within this plugin will work even whe
 
 ## Upgrading to a new version of this plugin
 
-When upgrading this plugin to a newer v2 version, simply replace the contents of the `addons/godot-xr-development-kit` folder with the new version.
+When upgrading this plugin to a newer version, simply replace the contents of the `addons/godot-xr-development-kit` folder with the new version.
 If you've submoduled the plugin, simply pull a new version by executing:
 ```
 cd addons/godot-xr-development-kit
@@ -93,12 +88,12 @@ git pull origin main
 
 ## Demo
 
-This repository contains a demo project that can be found in [the demo branch](https://github.com/BastiaanOlij/godot-xr-development-kit/tree/demo).
+This repository contains a demo project that can be found in [the demo branch](https://github.com/GodotVR/godot-xr-development-kit/tree/demo).
 A full project can be downloaded from the releases page.
 
 To obtain the latest version we recommend using git from the command line, this will pull in submodules correctly:
 ```
-git clone -b demo --recurse-submodules https://github.com/BastiaanOlij/godot-xr-development-kit
+git clone -b demo --recurse-submodules https://github.com/GodotVR/godot-xr-development-kit
 ```
 
 ## Licensing
