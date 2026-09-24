@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ivqnbsa43t8j"]
+
+[ext_resource type="Script" uid="uid://p8oy8hgfd048" path="res://components/interactable/joystick/joystick.gd" id="1_ujr6u"]
+[ext_resource type="Script" uid="uid://bsu5kkrej0mn7" path="res://components/interactable/joystick/joystick_body.gd" id="2_dpoig"]
+
+[node name="Joystick" type="Node3D" unique_id=413916909]
+script = ExtResource("1_ujr6u")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="." unique_id=1933353282]
+script = ExtResource("2_dpoig")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D" unique_id=1284089897]
+
+[connection signal="changed" from="AnimatableBody3D" to="." method="_on_value_changed"]

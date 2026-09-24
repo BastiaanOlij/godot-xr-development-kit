@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://j7nspaqtjtsf"]
+
+[ext_resource type="PackedScene" uid="uid://ivqnbsa43t8j" path="res://components/interactable/joystick/joystick.tscn" id="1_ujr6u"]
+[ext_resource type="Script" uid="uid://xrt2jog5h0j" path="res://addons/godot-xr-development-kit/components/decorators/gxdk_grab_point.gd" id="2_71i16"]
+[ext_resource type="Shader" uid="uid://xrt2oqik7ik" path="res://addons/godot-xr-development-kit/shaders/shaded_no_alpha.gdshader" id="2_dpoig"]
+[ext_resource type="Script" uid="uid://xrt22k41jo6" path="res://addons/godot-xr-development-kit/hands/poses/gxdk_finger_poses.gd" id="3_dpoig"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_71i16"]
+margin = 0.01
+radius = 0.03
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2qyt"]
+render_priority = 0
+shader = ExtResource("2_dpoig")
+shader_parameter/albedo = Color(0.6872149, 0.68721503, 0.6872149, 1)
+shader_parameter/metallic = 0.5000000074506
+shader_parameter/roughness = 0.80000001192096
+shader_parameter/specular = 0.5
+
+[sub_resource type="Resource" id="Resource_71i16"]
+script = ExtResource("3_dpoig")
+thumb_enabled = true
+thumb_spread = 0.33161255787892263
+thumb_metacarpal_curl = 0.2617993877991494
+thumb_proximal_curl = 0.767944870877505
+thumb_distal_curl = 0.942477796076938
+index_enabled = true
+index_spread = 0.2792526803190927
+index_proximal_curl = 1.3962634015954636
+middle_enabled = true
+middle_proximal_curl = 1.1693705988362009
+ring_enabled = true
+ring_proximal_curl = 1.0821041362364845
+little_enabled = true
+little_spread = -0.06981317007977318
+little_proximal_curl = 1.0471975511965976
+metadata/_custom_type_script = "uid://xrt22k41jo6"
+
+[node name="Joystick" unique_id=413916909 instance=ExtResource("1_ujr6u")]
+
+[node name="CollisionShape3D" parent="AnimatableBody3D" parent_id_path=PackedInt32Array(1933353282) index="0" unique_id=1284089897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("SphereShape3D_71i16")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="AnimatableBody3D" parent_id_path=PackedInt32Array(1933353282) index="1" unique_id=1927493363]
+radius = 0.02
+radial_segments = 16
+rings = 8
+material = SubResource("ShaderMaterial_j2qyt")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="AnimatableBody3D/CSGSphere3D" index="0" unique_id=1175934557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+radius = 0.01
+height = 0.1
+material = SubResource("ShaderMaterial_j2qyt")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="AnimatableBody3D/CSGSphere3D" index="1" unique_id=1345702128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+radius = 0.03
+radial_segments = 32
+rings = 16
+material = SubResource("ShaderMaterial_j2qyt")
+
+[node name="LeftGrabPoint" type="Node3D" parent="AnimatableBody3D" parent_id_path=PackedInt32Array(1933353282) index="2" unique_id=21807023]
+transform = Transform3D(-4.371139e-08, 0.9999998, 0, -1, -4.371138e-08, 0, 0, 0, 0.9999998, 0.01137099, 0.14844707, 0.04447362)
+script = ExtResource("2_71i16")
+right_hand = false
+exclusive = true
+finger_poses = SubResource("Resource_71i16")
+metadata/_custom_type_script = "uid://xrt2jog5h0j"
+
+[node name="RightGrabPoint" type="Node3D" parent="AnimatableBody3D" parent_id_path=PackedInt32Array(1933353282) index="3" unique_id=912005602]
+transform = Transform3D(-4.371139e-08, -0.99999994, 0, 1, -4.3711385e-08, 0, 0, 0, 0.99999994, -0.011, 0.148, 0.044)
+script = ExtResource("2_71i16")
+left_hand = false
+exclusive = true
+finger_poses = SubResource("Resource_71i16")
+metadata/_custom_type_script = "uid://xrt2jog5h0j"

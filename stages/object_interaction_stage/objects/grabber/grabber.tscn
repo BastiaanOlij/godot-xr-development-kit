@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://byy5b6o1r5b2d"]
+
+[ext_resource type="Script" uid="uid://fc5un4tq41bj" path="res://stages/object_interaction_stage/objects/grabber/grabber.gd" id="1_unsik"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v8rw7"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 1.0
+radial_segments = 8
+rings = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_unsik"]
+radius = 0.01
+height = 0.02
+
+[node name="Grabber" type="Node3D" unique_id=2023023807]
+script = ExtResource("1_unsik")
+open = null
+
+[node name="Rope" type="MeshInstance3D" parent="." unique_id=1100563157]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("CylinderMesh_v8rw7")
+
+[node name="Claw" type="Node3D" parent="." unique_id=525725484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Claw" unique_id=1869637336]
+mesh = SubResource("SphereMesh_unsik")
+
+[node name="Claw01" type="Node3D" parent="Claw" unique_id=201113019]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw01" unique_id=1081749453]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.05, 0)
+size = Vector3(0.01, 0.1, 0.01)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw01/CSGBox3D" unique_id=2011732465]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.045, 0.035)
+size = Vector3(0.01, 0.06, 0.01)
+
+[node name="Claw02" type="Node3D" parent="Claw" unique_id=139289536]
+transform = Transform3D(-0.50000006, 0.61237234, 0.61237234, 0, 0.7071067, -0.7071067, -0.8660254, -0.35355338, -0.35355338, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw02" unique_id=1651655708]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.05, 0)
+size = Vector3(0.01, 0.1, 0.01)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw02/CSGBox3D" unique_id=659082230]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.045, 0.035)
+size = Vector3(0.01, 0.06, 0.01)
+
+[node name="Claw03" type="Node3D" parent="Claw" unique_id=2038468686]
+transform = Transform3D(-0.4999999, -0.6123724, -0.6123724, 0, 0.7071067, -0.7071067, 0.86602545, -0.3535533, -0.3535533, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw03" unique_id=1590707414]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.05, 0)
+size = Vector3(0.01, 0.1, 0.01)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw03/CSGBox3D" unique_id=1428845013]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.045, 0.035)
+size = Vector3(0.01, 0.06, 0.01)

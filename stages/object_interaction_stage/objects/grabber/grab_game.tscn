@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://d6rdba084apb"]
+
+[ext_resource type="Material" uid="uid://cqturmn05f1ku" path="res://stages/object_interaction_stage/objects/grabber/materials/grabber.tres" id="1_0pv65"]
+[ext_resource type="Script" uid="uid://dcu65rf72umif" path="res://stages/object_interaction_stage/objects/grabber/grab_game.gd" id="1_wa7ks"]
+[ext_resource type="Shader" uid="uid://bdsks8t8trx07" path="res://materials_and_shaders/shaded_with_alpha.gdshader" id="2_lv1vd"]
+[ext_resource type="PackedScene" uid="uid://j7nspaqtjtsf" path="res://stages/object_interaction_stage/objects/grabber/joystick.tscn" id="3_lv1vd"]
+[ext_resource type="PackedScene" uid="uid://byy5b6o1r5b2d" path="res://stages/object_interaction_stage/objects/grabber/grabber.tscn" id="4_rhoa3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhoa3"]
+render_priority = 0
+shader = ExtResource("2_lv1vd")
+shader_parameter/albedo = Color(0.34117648, 0.78431374, 0.78039217, 0.2627451)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.5
+
+[node name="GrabGame" type="Node3D" unique_id=2055827191]
+script = ExtResource("1_wa7ks")
+
+[node name="Case" type="CSGCombiner3D" parent="." unique_id=1624048276]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Case" unique_id=217191734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Case" unique_id=94564720]
+transform = Transform3D(1, 0, 0, 0, 0.8952457, -0.4455729, 0, 0.4455729, 0.8952457, 0.18819842, 0.92004174, 0.5677462)
+size = Vector3(0.6, 0.05, 0.2)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Case" unique_id=2085750070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(1, 0.1, 1)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Case" unique_id=1585452521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.5, -0.45)
+size = Vector3(0.1, 1, 0.1)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Case" unique_id=1395655144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.5, -0.45)
+size = Vector3(0.1, 1, 0.1)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Case" unique_id=1751869693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.5, 0.45)
+size = Vector3(0.1, 1, 0.1)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Case" unique_id=1951236012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.5, 0.45)
+size = Vector3(0.1, 1, 0.1)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Case" unique_id=1120482538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24205953, 1.0019258, 0.22280377)
+size = Vector3(0.35, 0.1, 0.35)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Case" unique_id=455054312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24205953, 0.8668103, 0.22280377)
+operation = 2
+size = Vector3(0.3, 0.5, 0.3)
+material = ExtResource("1_0pv65")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Case/CSGBox3D7" unique_id=1376910709]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, -0.3195911, 0.13108832)
+size = Vector3(0.3, 0.5, 0.3)
+material = ExtResource("1_0pv65")
+
+[node name="Glass" type="CSGCombiner3D" parent="." unique_id=1417128522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47, 0)
+
+[node name="CSGBox3D01" type="CSGBox3D" parent="Glass" unique_id=1610345526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.45)
+size = Vector3(0.9, 1, 0.05)
+material = SubResource("ShaderMaterial_rhoa3")
+
+[node name="CSGBox3D02" type="CSGBox3D" parent="Glass" unique_id=2012787066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
+size = Vector3(0.9, 1, 0.05)
+material = SubResource("ShaderMaterial_rhoa3")
+
+[node name="CSGBox3D03" type="CSGBox3D" parent="Glass" unique_id=160929839]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.45, 0, 0)
+size = Vector3(0.9, 1, 0.05)
+material = SubResource("ShaderMaterial_rhoa3")
+
+[node name="CSGBox3D04" type="CSGBox3D" parent="Glass" unique_id=929370388]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.45, 0, 0)
+size = Vector3(0.9, 1, 0.05)
+material = SubResource("ShaderMaterial_rhoa3")
+
+[node name="Interactables" type="Node3D" parent="." unique_id=464298706]
+transform = Transform3D(1, 0, 0, 0, 0.8952457, -0.4455729, 0, 0.4455729, 0.8952457, 0.18819842, 0.94242287, 0.57888556)
+
+[node name="Joystick" parent="Interactables" unique_id=413916909 instance=ExtResource("3_lv1vd")]
+
+[node name="GrabberOrigin" type="Node3D" parent="." unique_id=1227228020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35243702, 1.950917, 0.34553868)
+
+[node name="Grabber" parent="GrabberOrigin" unique_id=2023023807 instance=ExtResource("4_rhoa3")]
+open = 0.0
