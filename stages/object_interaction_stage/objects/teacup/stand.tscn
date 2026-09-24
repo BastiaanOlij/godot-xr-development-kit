@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://doo72j21oohox"]
+
+[ext_resource type="PackedScene" uid="uid://hnurqq3vlo7t" path="res://assets/object_interaction/teacup/stand.glb" id="1_v7d3l"]
+[ext_resource type="Shader" uid="uid://xrt2oqik7ik" path="res://addons/godot-xr-development-kit/shaders/shaded_no_alpha.gdshader" id="2_6xnbf"]
+[ext_resource type="Script" uid="uid://xrt2gfbq77m" path="res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone.gd" id="3_mgd0s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgd0s"]
+render_priority = 0
+shader = ExtResource("2_6xnbf")
+shader_parameter/albedo = Color(0.21230483, 0.21230483, 0.21230483, 1)
+shader_parameter/metallic = 0.5000000074506
+shader_parameter/roughness = 0.5000000074506
+shader_parameter/specular = 0.5
+
+[node name="Stand" unique_id=1931807143 instance=ExtResource("1_v7d3l")]
+
+[node name="Stand" parent="." index="0" unique_id=240506189]
+material_override = SubResource("ShaderMaterial_mgd0s")
+
+[node name="GXDKSnapZone01" type="Node3D" parent="Stand" index="1" unique_id=1038464576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.086, 0.28, 0)
+script = ExtResource("3_mgd0s")
+radius = 0.1
+require_snap_point_group = "SnapTeacupToStand"
+metadata/_custom_type_script = "uid://xrt2gfbq77m"
+
+[node name="GXDKSnapZone02" type="Node3D" parent="Stand" index="2" unique_id=389908791]
+transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, -0.043000005, 0.28, -0.07447819)
+script = ExtResource("3_mgd0s")
+radius = 0.1
+require_snap_point_group = "SnapTeacupToStand"
+metadata/_custom_type_script = "uid://xrt2gfbq77m"
+
+[node name="GXDKSnapZone03" type="Node3D" parent="Stand" index="3" unique_id=1358681325]
+transform = Transform3D(-0.4999999, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, -0.4999999, -0.042999998, 0.28, 0.074478194)
+script = ExtResource("3_mgd0s")
+radius = 0.1
+require_snap_point_group = "SnapTeacupToStand"
+metadata/_custom_type_script = "uid://xrt2gfbq77m"

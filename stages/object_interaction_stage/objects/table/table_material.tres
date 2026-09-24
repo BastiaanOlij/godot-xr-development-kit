@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bvk7m478rjlkq"]
+
+[ext_resource type="Shader" uid="uid://xrt2oqik7ik" path="res://addons/godot-xr-development-kit/shaders/shaded_no_alpha.gdshader" id="1_x0e3p"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_x0e3p")
+shader_parameter/albedo = Color(0.34781694, 0.34781697, 0.3478169, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.5

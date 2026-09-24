@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d2aj38bs5v2a8"]
+
+[ext_resource type="PackedScene" uid="uid://xq5g7ilaa3ud" path="res://assets/object_interaction/ducky/rubberduck.glb" id="1_a7ng7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a7ng7"]
+points = PackedVector3Array(0.32331145, 0.14857392, 0.08461691, -0.3881132, 0.24160288, -0.020297077, -0.38842037, 0.241484, 0.014734136, 0.12572925, 0.7557875, 0.03809118, 0.04338437, 0.17261414, -0.27572057, -0.107106455, 0.12770016, 0.25695407, 0.12298267, 0.65711015, -0.19219245, -0.09639221, 0.007675908, -0.05537214, 0.030933447, 0.62208307, 0.20896628, -0.13891648, 0.6631712, -0.087268636, -0.2229819, 0.20807116, -0.2516095, 0.3096291, 0.17315935, -0.13596769, 0.2760802, 0.6374362, 0.04953535, 0.2171102, 0.14988339, 0.22318941, -0.3777421, 0.36957523, 0.06385602, 0.16073073, 0.019326821, -0.008596653, -0.27995828, 0.19712342, 0.21050672, -0.10559758, 0.676217, 0.11616247, 0.22648485, 0.5999333, 0.16380446, -0.15431057, 0.03252438, 0.11940824, 0.23839444, 0.6118024, -0.14660259, -0.35900432, 0.3014169, -0.1232711, -0.23451667, 0.08072778, -0.14741737, 0.19291823, 0.1278575, -0.22776002, -0.20886555, 0.26751047, 0.25403172, 0.08836063, 0.22116636, 0.2666848, -0.037661202, 0.6664178, -0.16798246, 0.13597377, 0.045480996, 0.15368736, -0.04947377, 0.056992423, -0.19410138, -0.29324704, 0.1029702, 0.07264141, 0.02031994, 0.7542925, -0.04350563, 0.12292859, 0.59963757, -0.2150383)
+
+[sub_resource type="TorusMesh" id="TorusMesh_gnkkt"]
+inner_radius = 0.02
+outer_radius = 0.03
+rings = 32
+ring_segments = 16
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a7ng7"]
+margin = 0.001
+radius = 0.008
+height = 0.03
+
+[node name="Ducky" unique_id=490822114 instance=ExtResource("1_a7ng7")]
+collision_mask = 255
+continuous_cd = true
+
+[node name="DuckyCollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1040893674]
+transform = Transform3D(0.14308111, 0, 0, 0, 0.14308111, 0, 0, 0, 0.14308111, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_a7ng7")
+
+[node name="Ring" type="MeshInstance3D" parent="." index="2" unique_id=1544211507]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.008919895, 0.123775125, 0)
+mesh = SubResource("TorusMesh_gnkkt")
+
+[node name="RingCollisionShape3D01" type="CollisionShape3D" parent="." index="3" unique_id=43765134]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, 0.008919895, 0.15077512, 1.1802075e-09)
+shape = SubResource("CapsuleShape3D_a7ng7")
+
+[node name="RingCollisionShape3D02" type="CollisionShape3D" parent="." index="4" unique_id=1325184203]
+transform = Transform3D(-3.090862e-08, -0.70710677, 0.70710677, -7.4620004e-08, -0.70710677, -0.70710677, 1, -7.4620004e-08, -3.090862e-08, -0.010171989, 0.14286701, 8.345328e-10)
+shape = SubResource("CapsuleShape3D_a7ng7")
+
+[node name="RingCollisionShape3D03" type="CollisionShape3D" parent="." index="5" unique_id=1701636596]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, -8.742278e-08, -1, 4.371139e-08, 1, -8.742278e-08, 1.9106855e-15, -0.018080106, 0.123775125, -5.158851e-17)
+shape = SubResource("CapsuleShape3D_a7ng7")
+
+[node name="RingCollisionShape3D04" type="CollisionShape3D" parent="." index="6" unique_id=1106398814]
+transform = Transform3D(3.090862e-08, 0.70710677, 0.70710677, -7.4620004e-08, -0.70710677, 0.70710677, 1, -7.4620004e-08, 3.090862e-08, -0.010171989, 0.10468324, -8.345328e-10)
+shape = SubResource("CapsuleShape3D_a7ng7")
+
+[node name="RingCollisionShape3D05" type="CollisionShape3D" parent="." index="7" unique_id=271498248]
+transform = Transform3D(3.090862e-08, 0.70710677, -0.70710677, -1.2802769e-08, 0.70710677, 0.70710677, 1, -1.2802769e-08, 3.090862e-08, 0.028011778, 0.10468324, -8.345328e-10)
+shape = SubResource("CapsuleShape3D_a7ng7")
+
+[node name="RingCollisionShape3D06" type="CollisionShape3D" parent="." index="8" unique_id=1393283980]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 0, 1, 4.371139e-08, 1, 0, 1.9106855e-15, 0.035919897, 0.123775125, -5.158851e-17)
+shape = SubResource("CapsuleShape3D_a7ng7")
+
+[node name="RingCollisionShape3D07" type="CollisionShape3D" parent="." index="9" unique_id=273643635]
+transform = Transform3D(-3.090862e-08, -0.70710677, -0.70710677, -1.2802769e-08, 0.70710677, -0.70710677, 1, -1.2802769e-08, -3.090862e-08, 0.028011778, 0.14286701, 8.345328e-10)
+shape = SubResource("CapsuleShape3D_a7ng7")
