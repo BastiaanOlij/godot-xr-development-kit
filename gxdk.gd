@@ -237,6 +237,7 @@ class CollisionExceptionPair:
 	var bodyA: PhysicsBody3D
 	var bodyB: PhysicsBody3D
 	var count: int
+	var inferred: bool
 	var delay: float
 	var registered: bool
 
@@ -269,6 +270,7 @@ static func _find_collision_exception_pair(bodyA: PhysicsBody3D, bodyB: PhysicsB
 		cep.bodyA = bodyA
 		cep.bodyB = bodyB
 		cep.count = 0
+		cep.inferred = false
 		cep.delay = DEFAULT_DELAY
 		cep.registered = false
 		_collision_exception_pairs.push_back(cep)
@@ -287,7 +289,7 @@ static func _on_collision_check_timer():
 			# No longer valid, probably because our scene was unloaded.
 			# Collision exceptions are no longer active so just erase.
 			_collision_exception_pairs.erase(cep)
-		elif cep.count == 0:
+		elif cep.count == 0 and not cep.inferred:
 			if cep.delay > 0.0:
 				cep.delay = max(0.0, cep.delay - _collision_check_wait_time)
 				continue
@@ -350,6 +352,8 @@ static func add_collision_exception(bodyA: PhysicsBody3D, bodyB: PhysicsBody3D):
 
 	cep.count = cep.count + 1
 
+	_update_inferred_collision_exceptions()
+
 	# First time? Create our collision timer on our root.
 	if not _collision_check_timer:
 		var scene_tree: SceneTree = bodyA.get_tree()
@@ -382,12 +386,52 @@ static func remove_collision_exception(bodyA: PhysicsBody3D, bodyB: PhysicsBody3
 
 	cep.count = cep.count - 1
 
+	_update_inferred_collision_exceptions()
+
 	if cep.count == 0:
 		# Reset our delay just in case.
 		cep.delay = DEFAULT_DELAY
 
 		# Note: Once this hits 0, it will be freed in our timer when
 		# we no longer collide.
+
+
+# Make sure we have additional collisions for chained objects.
+static func _update_inferred_collision_exceptions():
+	var pairs: Array[CollisionExceptionPair]
+
+	# Reset our inferred state
+	for cep in _collision_exception_pairs:
+		cep.inferred = false
+		if cep.count > 0:
+			pairs.push_back(cep)
+
+	for cep in pairs:
+		var new_pairs: Array[CollisionExceptionPair]
+		new_pairs.append_array(_infer_collision_exceptions(cep.bodyA, cep.bodyB, pairs))
+		new_pairs.append_array(_infer_collision_exceptions(cep.bodyB, cep.bodyA, pairs))
+		pairs.append_array(new_pairs)
+
+
+# Infer collision exceptions between two objects, by checking collision exceptions for bodyA
+static func _infer_collision_exceptions(bodyA: PhysicsBody3D, bodyB: PhysicsBody3D, pairs: Array[CollisionExceptionPair]) -> Array[CollisionExceptionPair]:
+	var new_pairs: Array[CollisionExceptionPair]
+	for cep in pairs:
+		if cep.bodyA == bodyA and cep.bodyB != bodyB:
+			var inferred_cep: CollisionExceptionPair = _find_collision_exception_pair(bodyB, cep.bodyB)
+
+			# If new entry we add our collision exceptions
+			if not inferred_cep.registered:
+				inferred_cep.bodyA.add_collision_exception_with(inferred_cep.bodyB)
+				inferred_cep.bodyB.add_collision_exception_with(inferred_cep.bodyA)
+				inferred_cep.registered = true
+
+			inferred_cep.inferred = true
+
+			if not pairs.has(inferred_cep):
+				new_pairs.push_back(inferred_cep)
+
+	return new_pairs
 #endregion
 
 #region Deprecated functions
