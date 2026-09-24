@@ -26,7 +26,6 @@ This works by loading the `spectator.tscn` scene instead of the default `main.ts
 
 ## Licensing
 
-Code in this repository is licensed under the MIT license.
-Images are licensed under CC0 unless otherwise specified.
+Code in this repository is licensed under the MIT license (See `LICENSE`).
 
-See `LICENSE` for the full license.
+Images and assets are licensed under CC0 unless otherwise specified (see license files in asset folders).

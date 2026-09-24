@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dnrib3tay80vs"]
+
+[ext_resource type="PackedScene" uid="uid://cyqjrldtr7qx6" path="res://assets/object_interaction/teacup/saucer.glb" id="1_xgjas"]
+[ext_resource type="Script" uid="uid://mpryhw3bd27y" path="res://stages/object_interaction_stage/scripts/respawn_rigidbody3d.gd" id="2_3ydq5"]
+[ext_resource type="Script" uid="uid://xrt2gfbq77m" path="res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_zone.gd" id="2_neeul"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_neeul"]
+margin = 0.01
+points = PackedVector3Array(0.10474549, 0.0012394614, 0, -0.020935973, 0.015206348, -0.11174603, -0.11174603, 0.015206348, 0, -0.08728791, -0.005746033, -0.0069895983, 0.11174603, 0.015206348, 0, 0.073330596, -0.005746033, -0.048905294, 0.073330596, 0.015206348, -0.08728791, -0.073330596, 0.0012394614, -0.07681993, 0.034915164, 0.0047301576, -0.10824576, 0.08728791, -0.005746033, 0, -0.005501304, -0.0035282657, -0.08063751, 0.1012671, 0.0047301576, -0.052383684, -0.1012671, 0.015206348, -0.052383684, -0.10824576, 0.0047301576, -0.0349261, -0.073330596, -0.005746033, -0.048905294, -0.04539409, 0.0047301576, -0.10475643, -0.08728791, -0.005746033, 0, 0.073330596, 0.0047301576, -0.08728791, -0.073330596, 0.015206348, -0.08728791, -0.08728791, 0.0047301576, -0.073330596, 0.10474549, 0.015206348, -0.045405027, 0.04539409, 0.015206348, -0.10475643, 0.11174603, 0.0047301576, -0.02095785, -0.10474549, 0.0012394614, 0, -0.034915164, 0.0047301576, -0.10824576)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g67av"]
+margin = 0.01
+points = PackedVector3Array(0.04539409, 0.015206348, 0.10475643, -0.11174603, 0.0047301576, 0.02095785, 0.073330596, -0.005746033, 0.048905294, 0.11174603, 0.015206348, 0, -0.11174603, 0.015206348, 0, -0.04539409, 0.0047301576, 0.10475643, -0.08728791, -0.005746033, 0, 0.08728791, -0.005746033, 0, -0.073330596, 0.015206348, 0.08728791, -0.073330596, -0.005746033, 0.048905294, 0.073330596, 0.0047301576, 0.08728791, 0.10474549, 0.0047301576, 0.045405027, 0.005501304, -0.0035282657, 0.08063751, 0.034915164, 0.0047301576, 0.10824576, 0.1012671, 0.015206348, 0.052383684, -0.08728791, 0.0047301576, 0.073330596, -0.020935973, 0.015206348, 0.11174603, -0.10474549, 0.015206348, 0.045405027, 0.11174603, 0.0047301576, 0.02095785, 0.08728791, 0.015206348, 0.073330596, -0.034915164, 0.0047301576, 0.10824576, -0.10474549, 0.0047301576, 0.045405027)
+
+[node name="Saucer" unique_id=1225747926 instance=ExtResource("1_xgjas")]
+
+[node name="Saucer" parent="." index="0" unique_id=1274448689]
+script = ExtResource("2_3ydq5")
+
+[node name="CollisionShape3D" parent="Saucer" index="1" unique_id=996929030]
+shape = SubResource("ConvexPolygonShape3D_neeul")
+
+[node name="CollisionShape3D2" parent="Saucer" index="2" unique_id=1289868189]
+shape = SubResource("ConvexPolygonShape3D_g67av")
+
+[node name="TeacupSnapZone" type="Node3D" parent="Saucer" index="3" unique_id=255840347]
+script = ExtResource("2_neeul")
+require_snap_point_group = "SnapTeacupToSaucer"
+metadata/_custom_type_script = "uid://xrt2gfbq77m"

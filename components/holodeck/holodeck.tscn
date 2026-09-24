@@ -9,7 +9,7 @@
 [sub_resource type="Environment" id="Environment_016x1"]
 background_mode = 1
 ambient_light_source = 2
-ambient_light_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+ambient_light_color = Color(0.34781685, 0.347817, 0.34781682, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_smtut"]
 

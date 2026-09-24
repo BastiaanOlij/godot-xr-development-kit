@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://bv4ky2dsypisj"]
+
+[ext_resource type="PackedScene" uid="uid://67pb31tujoq1" path="res://assets/godot_plush/godot_plushXR.glb" id="1_qkmjg"]
+[ext_resource type="Script" uid="uid://dxjs7xdfi8to2" path="res://components/objects/godot_plush.gd" id="2_cy6p0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qkmjg"]
+margin = 0.001
+radius = 0.068536796
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_80x2v"]
+margin = 0.001
+radius = 0.005
+height = 0.015
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fpyxj"]
+margin = 0.001
+radius = 0.005
+height = 0.01447857
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mokyq"]
+radius = 0.015881661
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_khkxb"]
+margin = 0.001
+radius = 0.005
+height = 0.014627236
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uwo3i"]
+margin = 0.001
+radius = 0.005
+height = 0.020557519
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rewwp"]
+margin = 0.001
+radius = 0.005
+height = 0.023570057
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cy6p0"]
+margin = 0.001
+radius = 0.021554088
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cy6p0"]
+margin = 0.001
+radius = 0.005
+height = 0.020557525
+
+[node name="GodotPlush" unique_id=1604110546 instance=ExtResource("1_qkmjg")]
+script = ExtResource("2_cy6p0")
+
+[node name="root" parent="." index="0" unique_id=54332143]
+linear_damp = 0.2
+angular_damp = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="root" index="0" unique_id=527077459]
+transform = Transform3D(1, 1.5161576e-15, 1.427677e-14, -2.0436669e-15, 0.9993145, 0.03702156, -1.4210854e-14, -0.03702156, 0.9993145, 5.161611e-17, 0.11842124, -0.001172144)
+shape = SubResource("SphereShape3D_qkmjg")
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="root/Skeleton3D" parent_id_path=PackedInt32Array(793923788) index="1" unique_id=199004694]
+active = false
+
+[node name="Physical Bone foot_r" type="PhysicalBone3D" parent="root/Skeleton3D/PhysicalBoneSimulator3D" index="0" unique_id=257958535]
+transform = Transform3D(-1, 0.0002647316, -0.00015913823, 0.00012124936, 0.81028914, 0.58603024, 0.00028408872, 0.5860302, -0.8102892, -0.030023852, 0.01420268, 0.009786861)
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5993339e-05, -8.4513283e-07, 0.01207933)
+body_offset = Transform3D(0.9999935, -4.527479e-06, 7.0967217e-06, 7.167633e-06, 6.556511e-07, -0.9999994, 5.173919e-06, 0.9999995, 2.413988e-06, -2.6078895e-05, 0.012079323, 8.158386e-07)
+mass = 0.01
+bone_name = "foot.r"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="root/Skeleton3D" parent_id_path=PackedInt32Array(793923788) index="2" unique_id=589001012]
+transform = Transform3D(0.036966585, 0.03346543, -0.9987627, -0.06679537, -0.99712133, -0.035883166, -0.9970834, 0.06803864, -0.034625128, -0.031739272, 0.06479596, 0.0035775774)
+bone_name = "thigh_stretch.r"
+bone_idx = 8
+
+[node name="RightUpperArm" type="RigidBody3D" parent="." index="1" unique_id=1663500383]
+transform = Transform3D(-0.30145812, -0.14707695, 0.9420676, 0.0489132, 0.984345, 0.1693294, -0.95222396, 0.09712527, -0.2895448, -0.068980716, 0.090802304, -0.0010584584)
+mass = 0.01
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightUpperArm" index="0" unique_id=86197071]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_80x2v")
+
+[node name="RUAJoint3D" type="ConeTwistJoint3D" parent="RightUpperArm" index="1" unique_id=17117082]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1, 0, -1.0000001, -4.371139e-08, 0, 0, 0.007)
+node_a = NodePath("../../root")
+node_b = NodePath("..")
+swing_span = 0.43633232
+twist_span = 0.0
+
+[node name="BoneTarget" type="Node3D" parent="RightUpperArm" index="2" unique_id=422940912]
+transform = Transform3D(0.9999999, 2.0861626e-07, -2.2351742e-08, 1.4901161e-08, 6.277114e-07, 1, 2.0861626e-07, -0.99999994, 5.9232116e-07, 5.5879354e-09, 0, 0.0073136166)
+
+[node name="RightLowerArm" type="RigidBody3D" parent="." index="2" unique_id=191757382]
+transform = Transform3D(-0.9209331, -0.14700897, 0.36093011, -0.10030028, 0.9843343, 0.14500338, -0.3765927, 0.09733702, -0.92125106, -0.078483514, 0.08851418, 0.0077283327)
+mass = 0.02
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightLowerArm" index="0" unique_id=2026797004]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_fpyxj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RightLowerArm" index="1" unique_id=1319885620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009620339, 5.820766e-11, -0.024536628)
+shape = SubResource("SphereShape3D_mokyq")
+
+[node name="RLAJoint3D" type="ConeTwistJoint3D" parent="RightLowerArm" index="2" unique_id=978252332]
+transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, 1, 0, -0.99999994, -4.371139e-08, -7.450581e-09, -7.450581e-09, 0.007000002)
+node_a = NodePath("../../RightUpperArm")
+node_b = NodePath("..")
+swing_span = 0.43633232
+twist_span = 0.0
+
+[node name="BoneTarget" type="Node3D" parent="RightLowerArm" index="3" unique_id=1378957944]
+transform = Transform3D(0.99999964, -1.4901161e-07, -2.2351742e-08, 7.450581e-09, -4.3958426e-07, 0.99999976, -2.682209e-07, -0.9999998, -4.6938658e-07, -7.450581e-09, -7.450581e-09, 0.0072392644)
+
+[node name="LeftUpperArm" type="RigidBody3D" parent="." index="3" unique_id=1869589593]
+transform = Transform3D(-0.30145922, 0.14707357, -0.9420678, -0.048921835, 0.9843447, 0.16932862, 0.9522232, 0.09713335, -0.2895447, 0.0689807, 0.09080316, -0.0010584823)
+mass = 0.01
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftUpperArm" index="0" unique_id=186506387]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_khkxb")
+
+[node name="RUAJoint3D" type="ConeTwistJoint3D" parent="LeftUpperArm" index="1" unique_id=491784667]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1, 0, -1.0000001, -4.371139e-08, 0, 0, 0.007)
+node_a = NodePath("../../root")
+node_b = NodePath("..")
+swing_span = 0.43633232
+twist_span = 0.0
+
+[node name="BoneTarget" type="Node3D" parent="LeftUpperArm" index="2" unique_id=377639819]
+transform = Transform3D(0.99999976, 1.1920929e-07, -2.9802322e-08, -7.450581e-09, -1.7508864e-07, 0.99999976, 1.4901161e-07, -1, -7.636845e-08, 5.401671e-08, -8.34465e-07, 0.007313449)
+
+[node name="LeftLowerArm" type="RigidBody3D" parent="." index="4" unique_id=1602398066]
+transform = Transform3D(-0.92093325, 0.14700913, -0.36092985, 0.10030027, 0.9843342, 0.14500396, 0.3765925, 0.097337596, -0.92125106, 0.07848352, 0.08851415, 0.0077283448)
+mass = 0.02
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftLowerArm" index="0" unique_id=1072764809]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_fpyxj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LeftLowerArm" index="1" unique_id=195738957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00565602, 0, -0.020907816)
+shape = SubResource("SphereShape3D_mokyq")
+
+[node name="RLAJoint3D" type="ConeTwistJoint3D" parent="LeftLowerArm" index="2" unique_id=918429172]
+transform = Transform3D(0.9999999, -2.9802322e-08, -1.8626451e-08, 0, -4.4703484e-08, 1, 2.9802322e-08, -0.9999999, -5.2154064e-08, -7.450581e-09, -7.450581e-09, 0.007000003)
+node_a = NodePath("../../LeftUpperArm")
+node_b = NodePath("..")
+swing_span = 0.43633232
+twist_span = 0.0
+
+[node name="BoneTarget" type="Node3D" parent="LeftLowerArm" index="3" unique_id=1415254458]
+transform = Transform3D(0.99999976, 5.9604645e-08, 6.3329935e-08, 3.7252903e-09, 9.685755e-08, 0.9999998, 3.5762787e-07, -0.9999997, 1.7881393e-07, 1.1175871e-08, 2.9802322e-08, 0.0072392784)
+
+[node name="RightUpperLeg" type="RigidBody3D" parent="." index="5" unique_id=351150464]
+transform = Transform3D(0.03696652, -0.99875605, -0.033465385, -0.06679527, -0.03588287, 0.9971213, -0.9970817, -0.034624774, -0.06803864, -0.03139529, 0.054546792, 0.0042769304)
+mass = 0.01
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightUpperLeg" index="0" unique_id=783238857]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_uwo3i")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RightUpperLeg" index="1" unique_id=905047798]
+transform = Transform3D(0.9607649, 0.27736372, 1.8253922e-07, 2.8312206e-07, -1.6572885e-06, 0.99999994, 0.27736372, -0.9607649, -1.6782433e-06, 0.003268797, 5.5879354e-09, -0.021601442)
+shape = SubResource("CapsuleShape3D_rewwp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RightUpperLeg" index="2" unique_id=2068588560]
+transform = Transform3D(-0.037257873, -0.76877457, -0.63843364, 0.9987417, -0.0071865693, -0.049631063, 0.03356694, -0.6394794, 0.76807487, -0.0014780511, 0.0042766193, -0.04222523)
+shape = SubResource("SphereShape3D_cy6p0")
+
+[node name="RULJoint3D" type="ConeTwistJoint3D" parent="RightUpperLeg" index="3" unique_id=979394044]
+transform = Transform3D(1.0000015, 1.2665987e-07, 3.2782555e-07, -3.2037497e-07, -1.4924444e-07, 1.0000064, 1.7136335e-07, -0.99999994, -1.5227124e-07, -1.21071935e-08, -5.066395e-07, 0.010279395)
+node_a = NodePath("../../root")
+node_b = NodePath("..")
+twist_span = 0.0
+
+[node name="BoneTarget" type="Node3D" parent="RightUpperLeg" index="4" unique_id=2111414237]
+transform = Transform3D(1.0000017, 0, 1.2665987e-07, 0, -4.1909516e-08, 1.0000067, 1.4901161e-08, -1, -4.9592927e-08, 0, 1.8626451e-09, 0.010278769)
+
+[node name="LeftUpperLeg" type="RigidBody3D" parent="." index="6" unique_id=1742215512]
+transform = Transform3D(0.036967028, 0.998756, 0.033465113, 0.0667951, -0.035882633, 0.99712133, 0.9970817, -0.034625303, -0.06803849, 0.03139579, 0.054546148, 0.004276967)
+mass = 0.01
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftUpperLeg" index="0" unique_id=470888530]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_cy6p0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LeftUpperLeg" index="1" unique_id=14162630]
+transform = Transform3D(0.96077895, -0.2773146, -1.2121808e-08, 0, -4.371138e-08, 0.9999999, -0.2773146, -0.96077895, -4.1996987e-08, -0.003, 0, -0.022)
+shape = SubResource("CapsuleShape3D_rewwp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LeftUpperLeg" index="2" unique_id=449010542]
+transform = Transform3D(-0.037257865, -0.7687745, -0.63843364, 0.99874157, -0.0071865693, -0.04963105, 0.033566937, -0.6394794, 0.76807487, -0.0013563941, 0.0010154641, -0.042334832)
+shape = SubResource("SphereShape3D_cy6p0")
+
+[node name="LULJoint3D" type="ConeTwistJoint3D" parent="LeftUpperLeg" index="3" unique_id=1723837798]
+transform = Transform3D(1.0000015, 1.3411045e-07, 3.2782555e-07, -3.1664968e-07, -1.4901161e-07, 1.0000064, 1.6391277e-07, -1, -1.4761463e-07, -1.21071935e-08, -5.122274e-07, 0.010279391)
+node_a = NodePath("../../root")
+node_b = NodePath("..")
+twist_span = 0.0
+
+[node name="BoneTarget" type="Node3D" parent="LeftUpperLeg" index="4" unique_id=935814266]
+transform = Transform3D(1.0000015, 1.4156103e-07, 3.2410026e-07, -3.1292439e-07, -1.4924444e-07, 1.0000064, 1.5646219e-07, -1, -1.473818e-07, -1.3038516e-08, -5.159527e-07, 0.010279391)
+
+[node name="RespawnTimer" type="Timer" parent="." index="7" unique_id=1167395071]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

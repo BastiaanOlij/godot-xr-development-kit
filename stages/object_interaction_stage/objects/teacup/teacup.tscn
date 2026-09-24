@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://buf8ysh4t2w0b"]
+
+[ext_resource type="PackedScene" uid="uid://b6h6f8nn6v7oh" path="res://assets/object_interaction/teacup/teacup.glb" id="1_mo2ta"]
+[ext_resource type="Script" uid="uid://mpryhw3bd27y" path="res://stages/object_interaction_stage/scripts/respawn_rigidbody3d.gd" id="2_i3b63"]
+[ext_resource type="Script" uid="uid://xrt2jog5h0j" path="res://addons/godot-xr-development-kit/components/decorators/gxdk_grab_point.gd" id="2_n457b"]
+[ext_resource type="Resource" uid="uid://b7pglhac6flrr" path="res://stages/object_interaction_stage/objects/teacup/teacup_finger_poses.tres" id="3_n457b"]
+[ext_resource type="Script" uid="uid://xrt2pc3rnpd" path="res://addons/godot-xr-development-kit/components/snapping/gxdk_snap_point.gd" id="4_e1tkv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ibbu2"]
+margin = 0.01
+size = Vector3(0.09201172, 0.01, 0.037)
+
+[node name="Teacup" unique_id=413049317 instance=ExtResource("1_mo2ta")]
+
+[node name="Teacup" parent="." index="0" unique_id=81211603]
+script = ExtResource("2_i3b63")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Teacup" index="2" unique_id=1503548234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016005859, 0.005, 0)
+shape = SubResource("BoxShape3D_ibbu2")
+
+[node name="LeftGrabPoint" type="Node3D" parent="Teacup" index="3" unique_id=621757199]
+transform = Transform3D(-0.32180306, 0, 0.9468066, 0, 1, 0, -0.9468066, 0, -0.32180306, 0.16652922, 0.007958613, 0.004152298)
+script = ExtResource("2_n457b")
+right_hand = false
+exclusive = true
+finger_poses = ExtResource("3_n457b")
+metadata/_custom_type_script = "uid://xrt2jog5h0j"
+
+[node name="RightGrabPoint" type="Node3D" parent="Teacup" index="4" unique_id=1823565079]
+transform = Transform3D(0.32226565, 0, 0.94664925, 0, 1, 0, -0.94664925, 0, 0.32226565, 0.167, 0.008, -0.004)
+script = ExtResource("2_n457b")
+left_hand = false
+finger_poses = ExtResource("3_n457b")
+metadata/_custom_type_script = "uid://xrt2jog5h0j"
+
+[node name="SaucerSnapPoint" type="Node3D" parent="Teacup" index="5" unique_id=917603551 groups=["SnapTeacupToSaucer"]]
+script = ExtResource("4_e1tkv")
+metadata/_custom_type_script = "uid://xrt2pc3rnpd"
+
+[node name="StandSnapPoint2" type="Node3D" parent="Teacup" index="6" unique_id=1904389562 groups=["SnapTeacupToStand"]]
+transform = Transform3D(-4.371139e-08, 0.99999994, -4.3711385e-08, 0, -4.3711385e-08, -0.99999994, -1, -4.3711385e-08, 1.9106853e-15, 0.07241599, 0.035255704, 0)
+script = ExtResource("4_e1tkv")
+metadata/_custom_type_script = "uid://xrt2pc3rnpd"

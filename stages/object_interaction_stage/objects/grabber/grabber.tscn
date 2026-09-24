@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://byy5b6o1r5b2d"]
+
+[ext_resource type="Script" uid="uid://fc5un4tq41bj" path="res://stages/object_interaction_stage/objects/grabber/grabber.gd" id="1_unsik"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v8rw7"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 1.0
+radial_segments = 8
+rings = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_unsik"]
+margin = 0.001
+radius = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_unsik"]
+radius = 0.01
+height = 0.02
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_unsik"]
+radius = 0.01
+height = 0.05
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ywq08"]
+margin = 0.001
+radius = 0.01
+height = 0.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ywq08"]
+margin = 0.001
+size = Vector3(0.01, 0.1, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xn7qg"]
+margin = 0.001
+size = Vector3(0.01, 0.1, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mle3y"]
+margin = 0.001
+size = Vector3(0.01, 0.1, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o7oq5"]
+size = Vector3(0.01, 0.06, 0.01)
+
+[node name="Grabber" type="Node3D" unique_id=2023023807]
+script = ExtResource("1_unsik")
+
+[node name="Rope" type="MeshInstance3D" parent="." unique_id=1100563157]
+transform = Transform3D(1, 0, 0, 0, 0.03, 0, 0, 0, 1, 0, -0.015, 0)
+mesh = SubResource("CylinderMesh_v8rw7")
+
+[node name="ClawAnchor" type="RigidBody3D" parent="." unique_id=1415898255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0)
+can_sleep = false
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClawAnchor" unique_id=715322127]
+shape = SubResource("SphereShape3D_unsik")
+
+[node name="Sphere" type="MeshInstance3D" parent="ClawAnchor" unique_id=1869637336]
+mesh = SubResource("SphereMesh_unsik")
+skeleton = NodePath("")
+
+[node name="Chain01" type="RigidBody3D" parent="." unique_id=856650657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+
+[node name="PinJoint3D" type="PinJoint3D" parent="Chain01" unique_id=1126898340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+node_a = NodePath("../../ClawAnchor")
+node_b = NodePath("..")
+
+[node name="Capsule" type="MeshInstance3D" parent="Chain01" unique_id=733331854]
+mesh = SubResource("CapsuleMesh_unsik")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chain01" unique_id=503008909]
+shape = SubResource("CapsuleShape3D_ywq08")
+
+[node name="Chain02" type="RigidBody3D" parent="." unique_id=1107568405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, 0)
+
+[node name="PinJoint3D" type="PinJoint3D" parent="Chain02" unique_id=387746686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+node_a = NodePath("../../Chain01")
+node_b = NodePath("..")
+
+[node name="Capsule" type="MeshInstance3D" parent="Chain02" unique_id=1204710178]
+mesh = SubResource("CapsuleMesh_unsik")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chain02" unique_id=326744107]
+shape = SubResource("CapsuleShape3D_ywq08")
+
+[node name="Chain03" type="RigidBody3D" parent="." unique_id=704846670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0)
+
+[node name="PinJoint3D" type="PinJoint3D" parent="Chain03" unique_id=419492213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+node_a = NodePath("../../Chain02")
+node_b = NodePath("..")
+
+[node name="Capsule" type="MeshInstance3D" parent="Chain03" unique_id=231993940]
+mesh = SubResource("CapsuleMesh_unsik")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chain03" unique_id=483587253]
+shape = SubResource("CapsuleShape3D_ywq08")
+
+[node name="Claw" type="RigidBody3D" parent="." unique_id=371227399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19, 0)
+collision_mask = 255
+mass = 2.0
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="PinJoint3D" type="PinJoint3D" parent="Claw" unique_id=725479120]
+node_a = NodePath("../../Chain03")
+node_b = NodePath("..")
+
+[node name="Sphere" type="MeshInstance3D" parent="Claw" unique_id=802594667]
+mesh = SubResource("SphereMesh_unsik")
+skeleton = NodePath("")
+
+[node name="Claw01" type="Node3D" parent="Claw" unique_id=201113019]
+transform = Transform3D(1, 0, 0, 0, 0.5877851, -0.8090169, 0, 0.8090169, 0.5877851, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw01" unique_id=1081749453]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.05, 0)
+size = Vector3(0.01, 0.1, 0.01)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw01/CSGBox3D" unique_id=2011732465]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.045, 0.035)
+size = Vector3(0.01, 0.06, 0.01)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Claw/Claw01/CSGBox3D/CSGBox3D" unique_id=1107614597]
+remote_path = NodePath("../../../../LowerCollisionShape3D01")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Claw/Claw01/CSGBox3D" unique_id=1656720695]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -7.450581e-09, 7.450581e-09)
+remote_path = NodePath("../../../UpperCollisionShape3D01")
+
+[node name="Claw02" type="Node3D" parent="Claw" unique_id=139289536]
+transform = Transform3D(-0.49998188, 0.7006377, 0.50904304, 0, 0.5877852, -0.8090169, -0.8660359, -0.40449378, -0.29388195, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw02" unique_id=1651655708]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.05, 0)
+size = Vector3(0.01, 0.1, 0.01)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw02/CSGBox3D" unique_id=659082230]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.045, 0.035)
+size = Vector3(0.01, 0.06, 0.01)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Claw/Claw02/CSGBox3D/CSGBox3D" unique_id=1084368906]
+remote_path = NodePath("../../../../LowerCollisionShape3D02")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Claw/Claw02/CSGBox3D" unique_id=1119106000]
+transform = Transform3D(1, 0, 0, -2.9802322e-08, 1, 5.2154064e-08, -2.9802322e-08, 5.2154064e-08, 1, 0, 0, 0)
+remote_path = NodePath("../../../UpperCollisionShape3D02")
+
+[node name="Claw03" type="Node3D" parent="Claw" unique_id=2038468686]
+transform = Transform3D(-0.50003624, -0.7006123, -0.5090245, 0, 0.5877852, -0.8090169, 0.86600447, -0.40453777, -0.29391387, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw03" unique_id=1590707414]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.05, 0)
+size = Vector3(0.01, 0.1, 0.01)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Claw/Claw03/CSGBox3D" unique_id=1428845013]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.045, 0.035)
+size = Vector3(0.01, 0.06, 0.01)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Claw/Claw03/CSGBox3D/CSGBox3D" unique_id=474759941]
+remote_path = NodePath("../../../../LowerCollisionShape3D03")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Claw/Claw03/CSGBox3D" unique_id=1594564508]
+transform = Transform3D(1, 0, 0, 0, 1, 1.4901161e-08, 0, 1.4901161e-08, 1, 1.8626451e-09, 7.450581e-09, 2.2351742e-08)
+remote_path = NodePath("../../../UpperCollisionShape3D03")
+
+[node name="UpperCollisionShape3D01" type="CollisionShape3D" parent="Claw" unique_id=1794325021]
+transform = Transform3D(1, 0, 0, 0, 0.587785, -0.80901676, 0, 0.80901676, 0.587785, 0, -0.029389277, -0.040450845)
+shape = SubResource("BoxShape3D_ywq08")
+
+[node name="UpperCollisionShape3D02" type="CollisionShape3D" parent="Claw" unique_id=2114720422]
+transform = Transform3D(-0.49998194, 0.70063764, 0.50904304, 6.5932184e-09, 0.58778507, -0.80901676, -0.8660359, -0.40449378, -0.29388195, -0.035031885, -0.029389262, 0.020224689)
+shape = SubResource("BoxShape3D_xn7qg")
+
+[node name="UpperCollisionShape3D03" type="CollisionShape3D" parent="Claw" unique_id=1277678198]
+transform = Transform3D(-0.50003624, -0.70061225, -0.50902444, 0, 0.5877851, -0.8090168, 0.86600447, -0.40453774, -0.29391384, 0.035030596, -0.029389277, 0.02022688)
+shape = SubResource("BoxShape3D_mle3y")
+
+[node name="LowerCollisionShape3D01" type="CollisionShape3D" parent="Claw" unique_id=2010634316]
+transform = Transform3D(1, 0, 0, 0, -0.8090168, -0.587785, 0, 0.587785, -0.8090168, 0, -0.08415517, -0.056284122)
+shape = SubResource("BoxShape3D_o7oq5")
+
+[node name="LowerCollisionShape3D02" type="CollisionShape3D" parent="Claw" unique_id=378736291]
+transform = Transform3D(-0.49998188, 0.5090429, -0.70063764, 0, -0.8090168, -0.58778507, -0.8660359, -0.2938819, 0.40449375, -0.048744075, -0.08415517, 0.02814104)
+shape = SubResource("BoxShape3D_o7oq5")
+
+[node name="LowerCollisionShape3D03" type="CollisionShape3D" parent="Claw" unique_id=1030429537]
+transform = Transform3D(-0.50003624, -0.5090244, 0.70061225, 0, -0.8090168, -0.58778507, 0.86600447, -0.2939138, 0.40453774, 0.04874231, -0.08415517, 0.028144103)
+shape = SubResource("BoxShape3D_o7oq5")
+
+[connection signal="body_entered" from="Claw" to="." method="_on_claw_body_entered"]
