@@ -210,7 +210,7 @@ static func apply_torque_to_target(
 
 	# Grab our rigid body state.
 	var state : PhysicsDirectBodyState3D = PhysicsServer3D.body_get_direct_state(apply_to.get_rid())
-	var moment_of_inertia: Vector3 = Vector3(1.0, 1.0, 1.0) / state.inverse_inertia
+	var inertia_tensor: Basis = state.inverse_inertia_tensor.inverse()
 
 	var delta_axis_angle : Vector3 = GXDK.rotation_to_axis_angle(apply_to.global_basis, global_target_orientation)
 	var velocity : Vector3 = -apply_to.angular_velocity
@@ -220,7 +220,7 @@ static func apply_torque_to_target(
 
 	# Q: Shouldn't we subtract the current velocity?!?
 	var needed_angular_acceleration : Vector3 = (delta_axis_angle + (velocity * delta)) / half_t2
-	var torque : Vector3 = moment_of_inertia * needed_angular_acceleration * 0.5 # Why 0.5?
+	var torque : Vector3 = inertia_tensor * needed_angular_acceleration * 0.5 # Why 0.5?
 
 	# Apply as our torque
 	apply_to.apply_torque(proportion * torque)
