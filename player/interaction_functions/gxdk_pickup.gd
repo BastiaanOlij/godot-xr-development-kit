@@ -318,7 +318,7 @@ func pickup_object(object : GrabObject):
 			_grab_as_static_body = false
 
 		# If object is frozen, always treat like a static body.
-		if object.body.freeze:
+		if object.body is RigidBody3D and object.body.freeze:
 			_grab_as_static_body = true
 	elif object.body is StaticBody3D:
 		_pivot_on_primary = false
@@ -352,9 +352,13 @@ func pickup_object(object : GrabObject):
 		# Apply target override
 		_xr_collision_hand.add_target_override(_picked_up, 1, _grab_offset)
 
+		# TODO make finger poses part of the override system as well!
+
 		# Set finger poses based on what we've picked up (if applicable)
 		_xr_collision_hand.finger_poses = finger_poses
 		_xr_collision_hand.open_finger_poses = open_finger_poses
+
+		# TODO, should make this an automatic when target override changes
 
 		# Now animate our hand from our current location to our new location
 		_xr_collision_hand.tween_hand_from_location(target)
@@ -879,12 +883,16 @@ func _handle_picked_up_dynamic(delta: float, controller_target: Transform3D, glo
 		if closest_snap_zone:
 			global_target.basis = global_target.basis.orthonormalized().slerp(closest_offset.basis, closest_factor)
 
-		# Apply angular motion to picked up object.
-		# We always do this on primary only!
-		GXDK.apply_torque_to_target(
-			delta, _picked_up, global_target.basis, primary_factor,
-			parent_angular_velocity, parent_global_basis
-		)
+		if _picked_up is RigidBody3D:
+			# Apply angular motion to picked up object.
+			# We always do this on primary only!
+			GXDK.apply_torque_to_target(
+				delta, _picked_up, global_target.basis, primary_factor,
+				parent_angular_velocity, parent_global_basis
+			)
+		else:
+			# TODO implement something for this!
+			pass
 
 	# If we're close to a snap zone, lerp!
 	if closest_snap_zone:

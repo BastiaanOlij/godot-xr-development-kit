@@ -151,13 +151,17 @@ static func rotation_to_axis_angle(start_orientation : Basis, end_orientation : 
 ## Calculate and apply force needed to move rigid body to target.
 static func apply_force_to_target(
 		delta: float,
-		apply_to: RigidBody3D,
+		apply_to: PhysicsBody3D,
 		global_target_position: Vector3,
 		proportion: float = 1.0,
 		parent_linear_velocity: Vector3 = Vector3(),
 		parent_angular_velocity: Vector3 = Vector3(),
 		parent_global_position: Vector3 = Vector3()
 	):
+	if not apply_to is RigidBody3D and not apply_to is PhysicalBone3D:
+		push_error("apply_force_to_target only works with RigidBody3D and PhysicalBone3D")
+		return
+
 	# Apply force to move hand to tracked location:
 	# acceleration = (distance - current_velocity * t) / (0.5 * t²)
 	var half_t2 = 0.5 * delta * delta
@@ -193,7 +197,10 @@ static func apply_force_to_target(
 	# Apply proportional
 	linear_force = proportion * linear_force
 
-	apply_to.apply_central_force(linear_force)
+	if apply_to is RigidBody3D:
+		apply_to.apply_central_force(linear_force)
+	elif apply_to is PhysicalBone3D:
+		apply_to.apply_central_impulse(linear_force * delta)
 
 
 ## Calculate and apply torque needed to orientate rigid body to target.
